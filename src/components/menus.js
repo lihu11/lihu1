@@ -6,19 +6,19 @@ const menus = [
     label: '用户管理',
     submenu: [
       {
-        id: 'test',
+        id: 'userlist',
         label: '用户列表',
         path: '/user/userlist',
         icon: 'fa fa-hand-o-up'
       },
       {
-        id: 'test',
+        id: 'blacklist',
         label: '黑名单',
         path: '/user/blacklist',
         icon: 'fa fa-hand-o-up'
       },
       {
-        id: 'test',
+        id: 'feedback',
         label: '意见反馈',
         path: '/user/feedback',
         icon: 'fa fa-hand-o-up'
