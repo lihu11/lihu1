@@ -60,6 +60,9 @@ export default {
   .el-menu.side-menu .el-menu-item.is-active {
     color: #409EFF;
     border-right: solid 2px #36c1fa;
-    background: #eef3f5;
+    background: #eda323;
+  }
+  .el-menu-item:focus{
+    background-color: #eda323;
   }
 </style>

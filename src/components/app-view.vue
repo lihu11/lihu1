@@ -71,9 +71,12 @@ export default {
 }
 .app-container .app-header {
   padding: 0;
-  background: #15afd9;
+  background: linear-gradient(to right, #18add9, #6c42b7);
   overflow: visible;
   z-index: 100;
+}
+.m-navbar.info{
+  background-color: transparent!important;
 }
 .app-container .app-side {
   width: 200px;
@@ -130,9 +133,28 @@ export default {
   background-color: #338ace;
   color: #fff !important;
 }
+.el-menu{
+  background-color: transparent;
+}
+.el-menu-item-group>ul{
+  background-color: #163376;
+}
+.el-submenu:hover{
+  background-color: #286ea5!important;
+}
+.el-submenu:hover .el-submenu__title{
+  background-color: #286ea5!important;
+}
 element.style {
   color: #fff!important;
 }
+.el-menu-item:hover{
+  background-color: #5c8dff;
+}
+.app-side *{
+  color: #ffffff!important;
+}
+
 /* mini-side
 .app-container.mini-side .app-side {
   overflow: visible;
