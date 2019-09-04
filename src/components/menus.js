@@ -36,7 +36,7 @@ const menus = [
     ]
   },
   {
-    id: 'examples',
+    id: 'order',
     icon: 'fa fa-paper-plane',
     label: '订单管理',
     submenu: [

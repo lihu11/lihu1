@@ -1,7 +1,7 @@
 <template>
   <!-- <div>这是订单列表</div>-->
   <div>
-    <el-card class="box-card">
+    <div class="box-card">
       <el-row>
         <el-col :span="24" style="text-align: right;">
           <el-button size="mini">导出Excel</el-button>
@@ -97,24 +97,28 @@
           <el-button type="primary" size="mini"  class="searchBtn">查询</el-button>
         </el-form-item>
       </el-form>
-    </el-card>
+    </div>
     <div class="order-table">
       <el-table
+          size='mini'
           :data="tableData"
           border
           style="width: 100%">
           <el-table-column
             prop="id"
             label="序号"
-            width="180">
+            width="70"
+           >
           </el-table-column>
           <el-table-column
             prop="order-id"
-            label="订单编号">
+            label="订单编号"
+            width="90">
           </el-table-column>
           <el-table-column
             prop="username"
-            label="用户姓名">
+            label="用户姓名"
+            width="80">
           </el-table-column>
           <el-table-column
             prop="phone"
@@ -127,7 +131,7 @@
           <el-table-column
             prop="order_status"
             label="订单状态"
-            width="180">
+           >
           </el-table-column>
           <el-table-column
             prop="is_show"
@@ -156,7 +160,7 @@
           <el-table-column
             prop="should_amount"
             label="应还金额"
-            width="180">
+           >
           </el-table-column>
           <el-table-column
             prop="name"
@@ -192,6 +196,26 @@
 
             label="客户状态">
           </el-table-column>
+          <el-table-column
+            prop="source_for"
+
+            label="渠道来源">
+          </el-table-column>
+          <el-table-column
+            prop="assessor"
+
+            label="审核员">
+          </el-table-column>
+          <el-table-column
+            prop="collection_m"
+
+            label="催收员">
+          </el-table-column>
+          <el-table-column
+            prop="operation"
+
+            label="操作">
+          </el-table-column>
         </el-table>
     </div>
   </div>
@@ -222,7 +246,11 @@
           arr_time: '',
           s_time: '',
           ss_time:'',
-          status:'老客'
+          status:'老客',
+          source_for:'',
+          assessor:'',
+          collection_m:'',
+          operation:`<button>详情</button>`
         }
       ]
     }
@@ -234,19 +262,25 @@
   .box-card{
     width: 100%;
     background-color: #f3f3f3;
+    padding:20px;
+
   }
   .searchBtn{
     border: none;
     outline: none;
     background-color: #eda323
   }
-  .el-input--mini .el-input__inner{
-    border-radius: 14px;
+  .order-table{
+    margin-top:10px;
+    width: 100%;
+    overflow: auto;
   }
-  .el-range-editor--mini.el-input__inner {
-    border-radius: 14px;
-  }
+ 
   .el-form-item {
     margin-bottom: 4px;
+  }
+  .el-table--enable-row-transition .el-table__body td{
+    text-align: center;
+    font-size: 12px;
   }
 </style>

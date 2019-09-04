@@ -83,7 +83,7 @@ export default {
   transition: all 0.5s ease;
 }
 .app-container .app-body {
-  background: #ecf0f5;
+  background: #fff;
   padding: 20px;
 }
 .app-container .app-footer {
