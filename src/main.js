@@ -17,6 +17,8 @@ import '@/assets/css/scrollbar.css'
 import '@/assets/css/reset.css'
 import 'nprogress/nprogress.css'
 import 'animate.css'
+import '@/assets/css/baseform.css'
+import '@/assets/css/basetable.css'
 
 
 import DropdownPlugin from './m/dropdown'
@@ -128,4 +130,3 @@ var app = new Vue({
 })
 
 window.app = app
-

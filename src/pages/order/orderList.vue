@@ -103,34 +103,35 @@
           size='mini'
           :data="tableData"
           border
-          style="width: 100%">
+          style="width: 100%"
+          class="tableBox">
           <el-table-column
             prop="id"
             label="序号"
-            width="70"
            >
           </el-table-column>
           <el-table-column
             prop="order-id"
-            label="订单编号"
-            width="90">
+            label="订单编号">
           </el-table-column>
           <el-table-column
             prop="username"
-            label="用户姓名"
-            width="80">
+            label="用户姓名">
           </el-table-column>
           <el-table-column
             prop="phone"
-            label="手机编号">
+            label="手机编号"
+            width="100">
           </el-table-column>
           <el-table-column
             prop="loan_day"
-            label="借款期限(天)">
+            label="借款期限(天)"
+            width="100">
           </el-table-column>
           <el-table-column
             prop="order_status"
             label="订单状态"
+            width="100"
            >
           </el-table-column>
           <el-table-column
@@ -168,12 +169,12 @@
           </el-table-column>
           <el-table-column
             prop="punishment"
-
+            width="110"
             label="还款减免金额">
           </el-table-column>
           <el-table-column
             prop="apply_time"
-
+            width="140"
             label="申请时间">
           </el-table-column>
           <el-table-column
@@ -188,7 +189,7 @@
           </el-table-column>
           <el-table-column
             prop="ss_time"
-
+            width="100"
             label="实际还款日期">
           </el-table-column>
           <el-table-column
@@ -213,10 +214,24 @@
           </el-table-column>
           <el-table-column
             prop="operation"
-
             label="操作">
+            <template slot-scope="scope">
+                <el-button type="warning" size="mini">详情</el-button>
+            </template>
           </el-table-column>
         </el-table>
+    </div>
+    <div class="pageBox">
+      <el-pagination
+      background
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage4"
+      :page-sizes="[100, 200, 300, 400]"
+      :page-size="100"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="400">
+    </el-pagination>
     </div>
   </div>
 </template>
@@ -250,7 +265,7 @@
           source_for:'',
           assessor:'',
           collection_m:'',
-          operation:`<button>详情</button>`
+          operation:``
         }
       ]
     }
@@ -258,11 +273,11 @@
   }
 </script>
 
-<style>
+<style scoped>
   .box-card{
     width: 100%;
     background-color: #f3f3f3;
-    padding:20px;
+    padding:20px 20px 0;
 
   }
   .searchBtn{
@@ -275,12 +290,14 @@
     width: 100%;
     overflow: auto;
   }
- 
   .el-form-item {
     margin-bottom: 4px;
   }
   .el-table--enable-row-transition .el-table__body td{
     text-align: center;
     font-size: 12px;
+  }
+  .tableBox{
+    height: 415px;
   }
 </style>

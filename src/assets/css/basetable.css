@@ -1,0 +1,35 @@
+/* 通用表格 */
+  .tableContainer{
+    overflow: auto;
+    max-height: 580px;
+    width: 100%;
+  }
+  table{
+    border-collapse: collapse;
+    width: 100%;
+  }
+  thead tr{
+    height: 48px;
+    background-color: #cccccc;
+  }
+  thead tr td{
+    font-weight: 400;
+    color: rgb(0,0,0);
+  }
+  tbody tr{
+    height: 53px;
+  }
+  td{
+    text-align: center;
+    padding: 0 5px;
+    border: 1px solid #ebeef5;
+    white-space: nowrap;
+  }
+  td .btnBox .el-button{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+  }
+  tbody tr:hover{
+    background-color: #f5f7fb;
+  }

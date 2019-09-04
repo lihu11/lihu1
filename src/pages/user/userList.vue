@@ -53,7 +53,7 @@
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
-     
+
       <el-form-item label="订单状态">
         <el-select size="mini" v-model="formInline.orderState" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
@@ -86,7 +86,7 @@
       <el-form-item>
          <el-button type="warning">查询</el-button>
       </el-form-item>
-    </el-form> 
+    </el-form>
   </form>
   <div class="container">
     <div class="tableContainer">
@@ -188,7 +188,7 @@
               <span class="userState blackList">黑名单</span>
               <span class="userState greyList">灰名单</span>
             </td>
-           
+
             <td>2019-09-04 10:34:39</td>
             <td>2019-09-04 10:34:39</td>
             <td>
@@ -480,14 +480,14 @@
       :total="400">
     </el-pagination>
     </div>
-     
+
   </div>
 </div>
-  
+
 </template>
 
 <script>
-   
+
 
    export default {
     name:'userList',
@@ -516,7 +516,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 *{
   font-size: 12px!important;
   box-sizing: border-box;
@@ -530,92 +530,7 @@
     height: 100%;
     padding: 25px;
   }
-  .selectBox{
-    background-color: #f2f2f2;
-    padding: 15px 15px 0 15px;
-    margin-bottom: 15px;
-  }
-  .exportBox{
-    justify-content: flex-end;
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  .exportBtn{
-    display: block;
-    width: 100px;
-    background-color: #ffffff;
-    height: 35px;
-    line-height: 35px;
-    text-align: center;
-    border: 1px solid #dcdfe6;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  .el-form--inline .el-form-item{
-    margin:0 15px 18px 0;
-  }
-  .el-input__inner{
-    height: 30px;
-  }
-  .el-form-item__label,.el-form-item__content{
-    line-height: 30px;
-  }
-  .el-button--primary{
-    height: 30px;
-    padding: 0 20px;
-    line-height: 30px;
-  }
-  .el-range-editor.el-input__inner{
-    padding: 0 10px;
-  }
-  .el-date-editor input{
-    background-color: transparent;
-  }
-  .el-button{
-    line-height: 30px;
-  }
-  .selectBox .el-button {
-    height: 28px;
-    line-height: 28px;
-    padding: 0 20px;
-  }
-  /* 通用表格 */
-  .tableContainer{
-    overflow: auto;
-    max-height: 580px;
-    width: 100%;
-  }
-  table{
-    border-collapse: collapse;
-    width: 100%;
-  }
-  thead tr{
-    height: 48px;
-    background-color: #cccccc;
-  }
-  thead tr td{
-    font-weight: 400;
-    color: rgb(0,0,0);
-  }
-  tbody tr{
-    height: 53px;
-  }
-  td{
-    text-align: center;
-    padding: 0 5px;
-    border: 1px solid #ebeef5;
-    white-space: nowrap;
-  }
-  td .btnBox .el-button{
-    height: 30px;
-    line-height: 30px;
-    padding: 0 20px;
-  }
-  tr:hover{
-    background-color: #f5f7fb;
-  }
+
   .pageBox{
     margin-top: 20px;
     text-align: right;
