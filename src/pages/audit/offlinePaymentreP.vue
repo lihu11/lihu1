@@ -9,7 +9,7 @@
            <el-input  placeholder="请输入" round size="mini"></el-input>
          </el-form-item>
          <el-form-item>
-           <el-button type="primary" size="mini"  class="searchBtn">查询</el-button>
+           <el-button type="warning" >查询</el-button>
          </el-form-item>
        </el-form>
     </el-row>

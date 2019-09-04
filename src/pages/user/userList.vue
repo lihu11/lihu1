@@ -6,63 +6,63 @@
     </div>
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item label="审批人">
-        <el-input v-model="formInline.approver" placeholder="请输入"></el-input>
+        <el-input size="mini" v-model="formInline.approver" placeholder="请输入"></el-input>
       </el-form-item>
       <el-form-item label="手机号码">
-        <el-input v-model="formInline.mobile" placeholder="请输入"></el-input>
+        <el-input size="mini" v-model="formInline.mobile" placeholder="请输入"></el-input>
       </el-form-item>
       <el-form-item label="实名认证">
-        <el-select v-model="formInline.shiming" placeholder="全部">
+        <el-select size="mini" v-model="formInline.shiming" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="银行卡认证">
-        <el-select v-model="formInline.bankCard" placeholder="全部">
+        <el-select size="mini" v-model="formInline.bankCard" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="人脸识别认证">
-        <el-select v-model="formInline.face" placeholder="全部">
+        <el-select size="mini" v-model="formInline.face" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="通讯录认证">
-        <el-select v-model="formInline.mailList" placeholder="全部">
+        <el-select size="mini" v-model="formInline.mailList" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="运营商认证">
-        <el-select v-model="formInline.operator" placeholder="全部">
+        <el-select size="mini" v-model="formInline.operator" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="用户状态">
-        <el-select v-model="formInline.userState" placeholder="全部">
+        <el-select size="mini" v-model="formInline.userState" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="渠道来源">
-        <el-select v-model="formInline.channelSources" placeholder="全部">
+        <el-select size="mini" v-model="formInline.channelSources" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
      
       <el-form-item label="订单状态">
-        <el-select v-model="formInline.orderState" placeholder="全部">
+        <el-select size="mini" v-model="formInline.orderState" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="注册时间">
         <div class="block">
-        <el-date-picker
+        <el-date-picker size="mini"
             v-model="dataRange"
             type="daterange"
             start-placeholder="开始日期"
@@ -72,13 +72,13 @@
         </div>
       </el-form-item>
       <el-form-item label="老客是否复借">
-        <el-select v-model="formInline.borrow" placeholder="全部">
+        <el-select size="mini" v-model="formInline.borrow" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="是否提单">
-        <el-select v-model="formInline.bill" placeholder="全部">
+        <el-select size="mini" v-model="formInline.bill" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
@@ -566,23 +566,7 @@
     height: 30px;
     padding: 0 20px;
     line-height: 30px;
-    /* border-color: #eda323;
-    background-color: #eda323; */
   }
-   /* .el-button--primary:hover{
-     border-color: #eda323;
-     background-color: #eda323;
-     opacity: 0.9;
-   }
-   .el-button--primary:active{
-      border-color: #eda323;
-     background-color: #eda323;
-     opacity: 0.8;
-   }
-   .el-button--primary:visited{
-      border-color: #eda323;
-     background-color: #eda323;
-   } */
   .el-range-editor.el-input__inner{
     padding: 0 10px;
   }
@@ -593,8 +577,8 @@
     line-height: 30px;
   }
   .selectBox .el-button {
-    height: 30px;
-    line-height: 30px;
+    height: 28px;
+    line-height: 28px;
     padding: 0 20px;
   }
   /* 通用表格 */
