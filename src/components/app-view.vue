@@ -19,7 +19,7 @@
         <app-header @switch="handleSideSwitch" @set-theme="handleSetTheme" @hide-side="handleSwitchHideSide"></app-header>
       </el-header>
       <el-main class="app-body">
-        <el-container style="height: 100%;min-height: 100%;overflow: auto" id="appBody">
+        <el-container style="" id="appBody">
           <el-main class="app-page-body">
             <router-view></router-view>
           </el-main>

@@ -19,3 +19,6 @@
   border-top-color: #812CB2 !important;
   border-left-color: #812CB2 !important;
 }
+.el-pagination__editor.el-input .el-input__inner{
+  border-radius: 14px;
+}
