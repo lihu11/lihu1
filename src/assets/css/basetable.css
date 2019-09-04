@@ -1,4 +1,7 @@
 /* 通用表格 */
+/* .el-main{
+  width: 100%;
+} */
   .tableContainer{
     overflow: auto;
     max-height: 580px;
@@ -19,6 +22,10 @@
   tbody tr{
     height: 53px;
   }
+  .el-table--enable-row-transition .el-table__body td{
+    text-align: center;
+    font-size: 12px;
+  }
   td{
     text-align: center;
     padding: 0 5px;
@@ -32,4 +39,10 @@
   }
   tbody tr:hover{
     background-color: #f5f7fb;
+  }
+
+  /* 分页样式 */
+  .pageBox{
+    margin-top: 20px;
+    text-align: right;
   }

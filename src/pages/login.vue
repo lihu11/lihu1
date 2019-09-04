@@ -50,7 +50,7 @@ export default {
   }
 }
 </script>
-<style type="text/css">
+<style type="text/css" scoped>
  .fullscreen{
    background-image: url('../assets/img/houtai1.png');
    background-repeat: no-repeat;

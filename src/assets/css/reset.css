@@ -11,6 +11,7 @@
   color: #000;
   text-align: center;
   font-size: 12px;
+  font-weight: 400;
 }
  .el-input--mini .el-input__inner{
     border-radius: 14px;
@@ -31,4 +32,14 @@
 }
 .el-button{
   padding: 0 20px;
+}
+/* 图标居中 */
+editor--mini .el-range__icon {
+    line-height: 26px;
+}
+.el-range-editor--mini .el-range-separator {
+    line-height: 26px;
+}
+.el-range-editor--mini .el-range__close-icon, .el-range-editor--mini .el-range__icon {
+    line-height: 26px;
 }

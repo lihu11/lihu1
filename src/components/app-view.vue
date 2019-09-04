@@ -91,8 +91,9 @@ export default {
   border-top: solid 1px rgba(48, 54, 62, 0.14);
 }
 .app-container .app-page-body {
-  overflow: visible;
+  overflow: auto;
   padding: 0px;
+  /* width: 100%; */
 }
 .app-header-logo-box {
   padding: 15px;
