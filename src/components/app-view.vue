@@ -14,7 +14,7 @@
       </div>
       <app-side :collapse="isCollapse" :theme="theme.theme" class="aside-bg"></app-side>
     </el-aside>
-    <el-container style="overflow-x: auto">
+    <el-container class='mainBox' style="overflow-x: auto">
       <el-header class="app-header" :height="headerHeight + 'px'">
         <app-header @switch="handleSideSwitch" @set-theme="handleSetTheme" @hide-side="handleSwitchHideSide"></app-header>
       </el-header>
@@ -83,8 +83,8 @@ export default {
   transition: all 0.5s ease;
 }
 .app-container .app-body {
-  background: #ecf0f5;
-  padding: 0;
+  background: #fff;
+  padding: 20px;
 }
 .app-container .app-footer {
   background: #fff;

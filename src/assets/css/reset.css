@@ -7,10 +7,17 @@
   font-weight: 100;
 }
 .el-table .el-table__header thead th{
-  background: #E6EBF5;
-  color: #3c464e;
+  background: #CCC;
+  color: #000;
+  text-align: center;
+  font-size: 12px;
 }
-
+ .el-input--mini .el-input__inner{
+    border-radius: 14px;
+  }
+  .el-range-editor--mini.el-input__inner {
+    border-radius: 14px;
+  }
 #nprogress .bar {
   background: #812CB2 !important;
 }
