@@ -39,7 +39,7 @@ export default {
     return {
       isCollapse: false,
       hideSide: false,
-      sideWidth: 200,
+      sideWidth: 210,
       headerHeight: 50,
       theme: { theme: {} }
     }
@@ -51,7 +51,7 @@ export default {
   methods: {
     handleSideSwitch (val) {
       this.isCollapse = val
-      this.sideWidth = val ? 60 : 200
+      this.sideWidth = val ? 60 : 210
     },
     handleSwitchHideSide () {
       this.hideSide = !this.hideSide
@@ -82,10 +82,13 @@ export default {
   width: 200px;
   transition: all 0.5s ease;
 }
+<<<<<<< HEAD
+=======
 .app-container .app-body {
   /* background: #fff; */
   padding: 0;
 }
+>>>>>>> 21f1015684dd1de7e89bef6e530fa3d9b9d78b37
 .app-container .app-footer {
   background: #fff;
   border-top: solid 1px rgba(48, 54, 62, 0.14);
