@@ -1,7 +1,7 @@
 <template>
   <m-navbar :theme="theme.theme.headerTheme">
     <m-navbar-brand>
-      <i class="side-switch fa fa-bars" @click="handleSwitchSide"></i>
+      <i class="side-switch iconfont icon-jilu" @click="handleSwitchSide"></i>
     </m-navbar-brand>
   </m-navbar>
 </template>
@@ -64,10 +64,9 @@ export default {
 <style type="text/css">
 .side-switch {
   display: inline-block;
-  font-size: 32px;
+  font-size: 20px;
   cursor: pointer;
   color: inherit;
-  margin-top: 10px;
 }
 .side-switch:hover {
   color: #fff;

@@ -11,7 +11,7 @@
       :index="val.id + ''"
       :route="toRoute(val)"
       >
-      <i v-if="val.icon" :class="val.icon"></i>
+      <i v-if="val.icon" :class="val.icon" ></i>
       <span slot="title">{{val.label}}</span>
     </el-menu-item>
   </el-menu-item-group>

@@ -30,8 +30,13 @@
       </el-form>
     </div>
     <div class="text-info">
-      <p>次借人数：统计第二次借款成功的人数</p>
-      <p>复借人数：统计三次以及三次以上借款成功的人数，不包含词次借人数</p>
+      <p>这一部分数据的统计以应还款日期为标签，比如1号应还款的订单，在以后的转化数据都加到1号的统计，展期以后，原订单增加一笔结清，展期金额会加到还款金额，新应还款日增加一笔应该，增加一笔应还款本金</p>
+      <p>金额首逾率 = 未还金额 / 放款金额</p>
+      <p>订单首逾率 = 未还订单 / 应还订单</p>
+      <p>当前逾期率 = 未还金额 / 应还金额</p>
+      <p>总实还金额 = 提前订单金额+正常订单金额+部分还款金额+逾期还款总金额-正常还款减免金额+展期金额</p>
+      <p>复借率 = 今日老客放款数 / 当日还款总订单数</p>
+      <p>每7分钟刷新一次</p>
     </div>
     <div class="order-table">
           <el-table
@@ -48,59 +53,140 @@
               </el-table-column>
               <el-table-column
                 prop="order-id"
-                label="日期">
+                label="应还日期">
               </el-table-column>
               <el-table-column
                 prop="username"
-                label="渠道名称">
+                label="应还订单数">
               </el-table-column>
               <el-table-column
                 prop="phone"
-                width="118"
-                label="放款单数">
+                label="提前还款单数">
               </el-table-column>
               <el-table-column
                 prop="loan_day"
-                label="放款总数">
+                label="提前还款金额">
               </el-table-column>
               <el-table-column
                 prop="order_status"
-                label="首借人数"
+                label="正常还款订单数"
                >
               </el-table-column>
               <el-table-column
                 prop="is_show"
-                label="首借总额">
+                label="正常还款金额">
               </el-table-column>
               <el-table-column
                 prop="loan_money"
-                width="118"
-                label="次借人数">
+                label="展期订单数">
               </el-table-column>
               <el-table-column
                 prop="arrival_amount"
-                width="118"
-                label="次借总额">
+                label="逾期展期订单数">
               </el-table-column>
               <el-table-column
                 prop="service_charge"
-                width="118"
-                label="复借人数">
+                label="逾期展期订单金额">
               </el-table-column>
               <el-table-column
                 prop="days_overdue"
-                width="118"
-                label="复借总额">
+                label="展期金额">
               </el-table-column>
               <el-table-column
                 prop="money_overdue"
-                width="118"
-                label="实际放款总额">
+                label="减免金额">
               </el-table-column>
               <el-table-column
                 prop="should_amount"
-                width="118"
-                label="所属商务"
+                label="减免订单数"
+               >
+              </el-table-column>
+              <el-table-column
+                prop="service_charge"
+                label="逾期还款订单数">
+              </el-table-column>
+              <el-table-column
+                prop="days_overdue"
+                label="逾期未还订单数">
+              </el-table-column>
+              <el-table-column
+                prop="money_overdue"
+                label="部分还款金额">
+              </el-table-column>
+              <el-table-column
+                prop="should_amount"
+                label="还款订单减免金额"
+               >
+              </el-table-column>
+              <el-table-column
+                prop="service_charge"
+
+                label="逾期还款订单总金额">
+              </el-table-column>
+              <el-table-column
+                prop="days_overdue"
+
+                label="正常还款减免金额">
+              </el-table-column>
+              <el-table-column
+                prop="money_overdue"
+
+                label="应还金额">
+              </el-table-column>
+              <el-table-column
+                prop="should_amount"
+
+                label="总实还金额"
+               >
+              </el-table-column>
+              <el-table-column
+                prop="service_charge"
+
+                label="放款成本">
+              </el-table-column>
+              <el-table-column
+                prop="days_overdue"
+
+                label="逾期费用">
+              </el-table-column>
+              <el-table-column
+                prop="money_overdue"
+
+                label="订单首逾率">
+              </el-table-column>
+              <el-table-column
+                prop="should_amount"
+
+                label="1日回款率(订单)"
+               >
+              </el-table-column>
+              <el-table-column
+                prop="service_charge"
+
+                label="3日回款率(订单)">
+              </el-table-column>
+              <el-table-column
+                prop="days_overdue"
+
+                label="7日回款率(订单)">
+              </el-table-column>
+              <el-table-column
+                prop="money_overdue"
+
+                label="15日回款率(订单)">
+              </el-table-column>
+              <el-table-column
+                prop="should_amount"
+                label="当前订单逾期率"
+               >
+              </el-table-column>
+              <el-table-column
+                prop="money_overdue"
+                label="复借率">
+              </el-table-column>
+              <el-table-column
+                prop="should_amount"
+                label="金额首逾"
                >
               </el-table-column>
             </el-table>
@@ -127,7 +213,7 @@
 
 <style scoped>
   .text-info{
-    font-size: 16px;
+    font-size: 12px;
     margin: 15px 0;
   }
   .text-info p{

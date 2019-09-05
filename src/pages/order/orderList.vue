@@ -102,7 +102,7 @@
       <el-table
           height="480px"
           size='mini'
-          :data="tableData"
+          :data="orderList"
           border
           style="width: 100%"
           >
@@ -112,103 +112,101 @@
            >
           </el-table-column>
           <el-table-column
-            prop="order-id"
+            prop="applicationNumber"
             label="订单编号">
           </el-table-column>
           <el-table-column
-            prop="username"
+            prop="userName"
             label="用户姓名">
           </el-table-column>
           <el-table-column
-            prop="phone"
+            prop="phoneNumber"
             label="手机编号"
             width="100">
           </el-table-column>
           <el-table-column
-            prop="loan_day"
+            prop="loanDay"
             label="借款期限(天)"
-            width="100">
+            width="80">
           </el-table-column>
           <el-table-column
-            prop="order_status"
+            prop="loanStatus"
             label="订单状态"
             width="100"
            >
           </el-table-column>
           <el-table-column
-            prop="is_show"
+            prop="isPostphone"
             label="是否展期">
           </el-table-column>
           <el-table-column
-            prop="loan_money"
+            prop="loanMoney"
             label="借款金额">
           </el-table-column>
           <el-table-column
-            prop="arrival_amount"
+            prop="accountMoney"
             label="到账金额">
           </el-table-column>
           <el-table-column
-            prop="service_charge"
+            prop="serviceMoney"
             label="服务费">
           </el-table-column>
           <el-table-column
-            prop="days_overdue"
+            prop="lateDay"
             label="逾期天数">
           </el-table-column>
           <el-table-column
-            prop="money_overdue"
+            prop="lateMoney"
             label="逾期费用">
           </el-table-column>
           <el-table-column
-            prop="should_amount"
+            prop="shouldReturnMoney"
             label="应还金额"
            >
           </el-table-column>
           <el-table-column
-            prop="name"
+            prop="alreadyRepaidMoney"
             label="已还金额">
           </el-table-column>
           <el-table-column
-            prop="punishment"
             width="110"
             label="还款减免金额">
           </el-table-column>
           <el-table-column
-            prop="apply_time"
+            prop="f_createTime"
             width="140"
             label="申请时间">
           </el-table-column>
           <el-table-column
-            prop="arr_time"
+            prop="f_paymentDate"
+            width="110"
             label="到账时间">
           </el-table-column>
           <el-table-column
-            prop="s_time"
+            prop="f_shouldReturnDate"
+            width="110"
             label="应还日期">
           </el-table-column>
           <el-table-column
-            prop="ss_time"
-            width="100"
+            prop="f_alreadyRepaidDate"
+            width="110"
             label="实际还款日期">
           </el-table-column>
           <el-table-column
-            prop="status"
-
+            prop="userStatus"
             label="客户状态">
           </el-table-column>
           <el-table-column
-            prop="source_for"
-
+            prop="channelSources"
             label="渠道来源">
           </el-table-column>
           <el-table-column
-            prop="assessor"
+            prop="auditor"
 
             label="审核员">
           </el-table-column>
           <el-table-column
-            prop="collection_m"
-
+            prop="receiver"
             label="催收员">
           </el-table-column>
           <el-table-column
@@ -236,39 +234,33 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  import { dateTimeFormat } from '@/utils/dateFormat.js'
   export default{
   name: 'orderList',
-  data() {
+  data () {
     return {
-      tableData:[
-        {
-          id: '1',
-          order_id: '110011',
-          username: '张三',
-          phone: '15070634344',
-          loan_day: 7,
-          order_status: '风控不通过',
-          is_show: '否',
-          loan_money: '5000',
-          arrival_amount: '4200',
-          service_charge: '800',
-          days_overdue: 0,
-          money_overdue:0,
-          should_amount:'5000',
-          punishment:'0',
-          apply_time:'2019-08-30 10:04:37',
-          arr_time: '',
-          s_time: '',
-          ss_time:'',
-          status:'老客',
-          source_for:'',
-          assessor:'',
-          collection_m:'',
-          operation:``
-        }
-      ]
+      orderList:[],
     }
-  }
+  },
+  created() {
+     this.HandleGetOrderList();
+  },
+    methods: {
+      HandleGetOrderList:function() {
+        Vue.http.get('/hxy/loanAllService').then((res)=>{
+          
+          res.list.forEach(function(item){
+            item.f_createTime = dateTimeFormat(item.createTime);
+            item.f_paymentDate = dateTimeFormat(item.paymentDate);
+            item.f_shouldReturnDate = dateTimeFormat(item.shouldReturnDate);
+            item.f_alreadyRepaidDate = dateTimeFormat(item.alreadyRepaidDate);
+          })
+          this.orderList = res.list
+          //console.log(this.orderList)
+        })
+      }
+    }
   }
 </script>
 

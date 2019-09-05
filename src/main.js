@@ -11,7 +11,7 @@ import App from './App'
 import store from './store'
 import router from './router'
 import 'element-ui/lib/theme-chalk/index.css'
-import '@/assets/font-awesome-4.7.0/css/font-awesome.min.css'
+// import '@/assets/font-awesome-4.7.0/css/font-awesome.min.css'
 import '@/assets/css/main.css'
 import '@/assets/css/scrollbar.css'
 import '@/assets/css/reset.css'
@@ -19,6 +19,7 @@ import 'nprogress/nprogress.css'
 import 'animate.css'
 import '@/assets/css/baseform.css'
 import '@/assets/css/basetable.css'
+import '@/assets/font/iconfont.css'
 
 
 import DropdownPlugin from './m/dropdown'
@@ -86,7 +87,7 @@ Axios.defaults.validateStatus = status => {
 Axios.interceptors.request.use(config => {
   var token = sessionStorage.getItem('token')
   config.headers['Authorization'] = 'Bearer ' + token
-  // console.log(config)
+  //console.log(config)
   return config
 })
 
