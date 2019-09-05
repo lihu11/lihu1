@@ -114,7 +114,7 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>测试黄</td>
+            <td>测试宋</td>
             <td>13735643811</td>
             <td>未认证</td>
             <td>未认证</td>
@@ -142,7 +142,7 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>测试黄</td>
+            <td>测试宋</td>
             <td>13735643811</td>
             <td>未认证</td>
             <td>未认证</td>
@@ -201,7 +201,7 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>测试黄</td>
+            <td>测试宋</td>
             <td>13735643811</td>
             <td>未认证</td>
             <td>未认证</td>
@@ -225,7 +225,7 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>测试黄</td>
+            <td>测试宋</td>
             <td>13735643811</td>
             <td>未认证</td>
             <td>未认证</td>
@@ -271,10 +271,7 @@
 </template>
 
 <script>
-
-
    export default {
-    name:'userList',
     data() {
       return {
         dataRange:"",

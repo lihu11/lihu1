@@ -82,6 +82,13 @@ export default {
   width: 200px;
   transition: all 0.5s ease;
 }
+<<<<<<< HEAD
+=======
+.app-container .app-body {
+  /* background: #fff; */
+  padding: 0;
+}
+>>>>>>> 21f1015684dd1de7e89bef6e530fa3d9b9d78b37
 .app-container .app-footer {
   background: #fff;
   border-top: solid 1px rgba(48, 54, 62, 0.14);
@@ -89,7 +96,7 @@ export default {
 .app-container .app-page-body {
   overflow: auto;
   padding: 0px;
-  /* width: 100%; */
+  width:100%;
 }
 .app-header-logo-box {
   padding: 15px;
@@ -151,7 +158,10 @@ element.style {
 .app-side *{
   color: #ffffff!important;
 }
-
+#appBody{
+  width: 100%;
+  height: 100%;
+}
 /* mini-side
 .app-container.mini-side .app-side {
   overflow: visible;
