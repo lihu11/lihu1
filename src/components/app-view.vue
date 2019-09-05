@@ -83,8 +83,8 @@ export default {
   transition: all 0.5s ease;
 }
 .app-container .app-body {
-  background: #fff;
-  padding: 20px;
+  /* background: #fff; */
+  padding: 0;
 }
 .app-container .app-footer {
   background: #fff;
@@ -93,6 +93,7 @@ export default {
 .app-container .app-page-body {
   overflow: visible;
   padding: 0px;
+  width:100%;
 }
 .app-header-logo-box {
   padding: 15px;
@@ -154,7 +155,10 @@ element.style {
 .app-side *{
   color: #ffffff!important;
 }
-
+#appBody{
+  width: 100%;
+  height: 100%;
+}
 /* mini-side
 .app-container.mini-side .app-side {
   overflow: visible;
