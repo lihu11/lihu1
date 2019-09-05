@@ -87,7 +87,6 @@ Axios.defaults.validateStatus = status => {
 Axios.interceptors.request.use(config => {
   var token = sessionStorage.getItem('token')
   config.headers['Authorization'] = 'Bearer ' + token
-  //console.log(config)
   return config
 })
 
