@@ -2,7 +2,7 @@
   <!-- <div>这是订单列表</div>-->
   <div>
     <div class="box-card">
-      <el-row>
+      <el-row style="margin-bottom:15px;">
         <el-col :span="24" style="text-align: right;">
           <el-button size="mini">导出Excel</el-button>
         </el-col>
@@ -100,11 +100,12 @@
     </div>
     <div class="order-table">
       <el-table
+          height="480px"
           size='mini'
           :data="tableData"
           border
           style="width: 100%"
-          class="tableBox">
+          >
           <el-table-column
             prop="id"
             label="序号"
@@ -179,12 +180,10 @@
           </el-table-column>
           <el-table-column
             prop="arr_time"
-
             label="到账时间">
           </el-table-column>
           <el-table-column
             prop="s_time"
-
             label="应还日期">
           </el-table-column>
           <el-table-column
@@ -278,7 +277,6 @@
     width: 100%;
     background-color: #f3f3f3;
     padding:20px 20px 0;
-
   }
   .searchBtn{
     border: none;
@@ -286,18 +284,8 @@
     background-color: #eda323
   }
   .order-table{
-    margin-top:10px;
+    margin-top:15px;
     width: 100%;
     overflow: auto;
-  }
-  .el-form-item {
-    margin-bottom: 4px;
-  }
-  .el-table--enable-row-transition .el-table__body td{
-    text-align: center;
-    font-size: 12px;
-  }
-  .tableBox{
-    height: 415px;
   }
 </style>

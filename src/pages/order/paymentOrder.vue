@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="box-card">
-      <el-row>
+      <el-row style="margin-bottom: 15px;">
         <el-col :span="24" style="text-align: right;">
           <el-button size="mini">导出Excel</el-button>
         </el-col>
@@ -97,34 +97,128 @@
       <span>已还单数：0</span>
     </div>
     <div class="mytable">
-      <table>
-        <thead>
-          <tr>
-            <td>序号</td>
-            <td>订单号</td>
-            <td>借款人姓名</td>
-            <td>电话</td>
-            <td>借款金额</td>
-            <td>滞纳金</td>
-            <td>减免金额</td>
-            <td>还宽金额</td>
-            <td>还宽类型</td>
-            <td>借款次数</td>
-            <td>还宽次数</td>
-            <td>订单状态</td>
-            <td>到期时间</td>
-            <td>还款时间</td>
-            <td>失败原因</td>
-            <td>还款方式</td>
-            <td>收款渠道</td>
-            <td>还款银行</td>
-            <td>催收人员</td>
-            <td>渠道来源</td>
-            <td>三方订单号</td>
-            <td>操作</td>
-          </tr>
-        </thead>
-      </table>
+      <el-table
+          height="480px"
+          size='mini'
+          :data="tableData"
+          border
+          style="width: 100%"
+          class="tableBox">
+          <el-table-column
+            prop="id"
+            label="序号"
+           >
+          </el-table-column>
+          <el-table-column
+            prop="order-id"
+            label="订单号">
+          </el-table-column>
+          <el-table-column
+            prop="username"
+            label="借款人姓名">
+          </el-table-column>
+          <el-table-column
+            prop="phone"
+            label="电话"
+            width="100">
+          </el-table-column>
+          <el-table-column
+            prop="loan_day"
+            label="借款金额"
+            width="100">
+          </el-table-column>
+          <el-table-column
+            prop="order_status"
+            label="滞纳金"
+            width="100"
+           >
+          </el-table-column>
+          <el-table-column
+            prop="is_show"
+            label="减免金额">
+          </el-table-column>
+          <el-table-column
+            prop="loan_money"
+            label="还款金额">
+          </el-table-column>
+          <el-table-column
+            prop="arrival_amount"
+            label="还款类型">
+          </el-table-column>
+          <el-table-column
+            prop="service_charge"
+            label="借款次数">
+          </el-table-column>
+          <el-table-column
+            prop="days_overdue"
+            label="还款次数">
+          </el-table-column>
+          <el-table-column
+            prop="money_overdue"
+            label="订单状态">
+          </el-table-column>
+          <el-table-column
+            prop="should_amount"
+            label="到期时间"
+           >
+          </el-table-column>
+          <el-table-column
+            prop="name"
+            label="还款时间">
+          </el-table-column>
+          <el-table-column
+            prop="punishment"
+            width="110"
+            label="失败原因">
+          </el-table-column>
+          <el-table-column
+            prop="apply_time"
+            width="140"
+            label="还款方式">
+          </el-table-column>
+          <el-table-column
+            prop="arr_time"
+            label="收款渠道">
+          </el-table-column>
+          <el-table-column
+            prop="s_time"
+            label="还款银行">
+          </el-table-column>
+          <el-table-column
+            prop="ss_time"
+            width="100"
+            label="催收人员">
+          </el-table-column>
+          <el-table-column
+            prop="status"
+
+            label="渠道来源">
+          </el-table-column>
+          <el-table-column
+            prop="source_for"
+
+            label="三方订单">
+          </el-table-column>
+          <el-table-column
+            prop="operation"
+            label="操作">
+            <template slot-scope="scope">
+                <el-button type="warning" size="mini">详情</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+    </div>
+    <div class="pageBox">
+      <el-pagination
+      background
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage4"
+      :page-sizes="[100, 200, 300, 400]"
+      :page-size="100"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="400">
+    </el-pagination>
     </div>
   </div>
 </template>
@@ -137,14 +231,15 @@
   .box-card{
     width: 100%;
     background-color: #f3f3f3;
-    padding:20px;
+    padding:20px 20px 0;
     box-sizing: border-box;
   }
   .count{
     padding:6px 20px;
     width: 100%;
     background-color: #f3f3f3;
-    margin-top:10px;
+    margin-top:15px;
+    margin-bottom: 15px;
     font-size:16px;
     font-weight: 800;
     color: #666666;

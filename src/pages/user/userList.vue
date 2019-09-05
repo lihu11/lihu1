@@ -302,20 +302,6 @@
   font-size: 12px!important;
   box-sizing: border-box;
 }
-.el-main{
-  width: 100%;
-}
-  .app-container .app-body{
-    background-color: #ffffff;
-    width: 100%;
-    height: 100%;
-    padding: 25px;
-  }
-
-  .pageBox{
-    margin-top: 20px;
-    text-align: right;
-  }
   .certified{
     color: #3bcc4a;
   }

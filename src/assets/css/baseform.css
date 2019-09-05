@@ -49,3 +49,21 @@
     line-height: 28px;
     padding: 0 20px;
   }
+  .count{
+    padding:6px 20px;
+    width: 100%;
+    background-color: #f3f3f3;
+    margin-top:15px;
+    margin-bottom: 15px;
+    font-size:16px;
+    font-weight: 800;
+    color: #666666;
+  }
+  .count span{
+    margin-right: 10px;
+  }
+  .box-card{
+    width: 100%;
+    background-color: #f3f3f3;
+    padding:20px 20px 0;
+  }
