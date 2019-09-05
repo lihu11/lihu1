@@ -3,7 +3,7 @@
     <div class="box-card">
       <el-row style="margin-bottom: 15px;">
         <el-col :span="24" style="text-align: right;">
-          <el-button size="mini">导出Excel</el-button>
+          <el-button size="mini" @click='HandleExportDate'>导出Excel</el-button>
         </el-col>
       </el-row>
       <el-form :inline="true" class="demo-form-inline">
@@ -88,7 +88,7 @@
       <el-table
           height="480px"
           size='mini'
-          :data="tableData"
+          :data="loanList"
           border
           style="width: 100%"
           class="tableBox">
@@ -102,80 +102,79 @@
            >
           </el-table-column>
           <el-table-column
-            prop="order-id"
-            width="100"
+            prop="f_createTime"
+            width="140"
             label="订单创建时间">
           </el-table-column>
           <el-table-column
-            prop="username"
+            prop="applicationNumber"
             label="订单号">
           </el-table-column>
           <el-table-column
-            prop="phone"
+            prop="userName"
             label="借款人姓名"
             width="100">
           </el-table-column>
           <el-table-column
-            prop="loan_day"
+            prop="phoneNumber"
             label="电话"
             width="100">
           </el-table-column>
           <el-table-column
-            prop="order_status"
+            prop="windControlScore"
             label="风控分数"
             width="100"
            >
           </el-table-column>
           <el-table-column
-            prop="is_show"
+            prop="loanMoney"
             label="借款金额">
           </el-table-column>
           <el-table-column
-            prop="loan_money"
+            prop="accountMoney"
             label="到账金额">
           </el-table-column>
           <el-table-column
-            prop="arrival_amount"
+            prop="loanDay"
             label="期限(天)">
           </el-table-column>
           <el-table-column
-            prop="service_charge"
+            prop="loanTimes"
             label="借款次数">
           </el-table-column>
           <el-table-column
-            prop="days_overdue"
+            prop="returnTimes"
             label="还款次数">
           </el-table-column>
           <el-table-column
-            prop="money_overdue"
+            prop="loanStatus"
             label="订单状态">
           </el-table-column>
           <el-table-column
-            prop="should_amount"
+            prop="loseType"
             label="失败原因"
            >
           </el-table-column>
           <el-table-column
-            prop="name"
+            prop="loanBank"
             label="放款银行">
           </el-table-column>
           <el-table-column
-            prop="punishment"
-            width="110"
+            prop="f_accountDate"
+            width="140"
             label="到账时间">
           </el-table-column>
           <el-table-column
-            prop="apply_time"
-            width="140"
+            prop="channelSources"
             label="渠道来源">
           </el-table-column>
           <el-table-column
-            prop="arr_time"
+            prop="userStatus"
             label="新老客">
           </el-table-column>
           <el-table-column
-            prop="s_time"
-            width="100"
+            prop="otherId"
+            width="90"
             label="三方订单号">
           </el-table-column>
           <el-table-column
@@ -203,7 +202,36 @@
 </template>
 
 <script>
-  name:'loanOrders'
+  import Vue from 'vue'
+  import { dateTimeFormat } from '@/utils/dateFormat.js'
+  export default{
+    name:'loanOrders',
+    data(){
+      return {
+        loanList:[]
+      }
+    },
+    mounted() {
+      this.HandleGetLoanList()
+    },
+    methods:{
+      //获取放款订单数据
+      HandleGetLoanList:function(){
+        Vue.http.get('/hxy/loanStartService').then((res)=>{
+          res.list.forEach(function(item){
+            item.f_createTime = dateTimeFormat(item.createTime);
+            item.f_accountDate = dateTimeFormat(item.accountDate);
+          })
+          this.loanList = res.list
+          //console.log(this.orderList)
+        })
+      },
+      //导出放款订单数据
+      HandleExportDate:function(){
+        window.open('http://localhost:8080/hxy/execl/LoanStartexport.do')
+      }
+    }
+  }
 </script>
 
 <style>

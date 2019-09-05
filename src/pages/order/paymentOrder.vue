@@ -3,7 +3,7 @@
     <div class="box-card">
       <el-row style="margin-bottom: 15px;">
         <el-col :span="24" style="text-align: right;">
-          <el-button size="mini">导出Excel</el-button>
+          <el-button size="mini" @click='HandleExportDate'>导出Excel</el-button>
         </el-col>
       </el-row>
       <el-form :inline="true" class="demo-form-inline">
@@ -100,7 +100,7 @@
       <el-table
           height="480px"
           size='mini'
-          :data="tableData"
+          :data="payList"
           border
           style="width: 100%"
           class="tableBox">
@@ -110,93 +110,94 @@
            >
           </el-table-column>
           <el-table-column
-            prop="order-id"
+            prop="applicationNumber"
+            width="140"
             label="订单号">
           </el-table-column>
           <el-table-column
-            prop="username"
+            prop="userName"
+            width="100"
             label="借款人姓名">
           </el-table-column>
           <el-table-column
-            prop="phone"
+            prop="phoneNumber"
             label="电话"
             width="100">
           </el-table-column>
           <el-table-column
-            prop="loan_day"
-            label="借款金额"
-            width="100">
+            prop="loanMoney"
+            label="借款金额">
           </el-table-column>
           <el-table-column
-            prop="order_status"
             label="滞纳金"
-            width="100"
            >
           </el-table-column>
           <el-table-column
-            prop="is_show"
+            prop="loanAllId"
             label="减免金额">
           </el-table-column>
           <el-table-column
-            prop="loan_money"
+            prop="alreadyRepaidMoney"
             label="还款金额">
           </el-table-column>
           <el-table-column
-            prop="arrival_amount"
+            prop="returnType"
             label="还款类型">
+            全部还款
           </el-table-column>
           <el-table-column
-            prop="service_charge"
+            prop="loanTimes"
             label="借款次数">
           </el-table-column>
           <el-table-column
-            prop="days_overdue"
+            prop="returnTimes"
             label="还款次数">
           </el-table-column>
           <el-table-column
-            prop="money_overdue"
+            prop="loanStatus"
             label="订单状态">
           </el-table-column>
           <el-table-column
-            prop="should_amount"
+            prop="f_shouldReturnDate"
             label="到期时间"
+            width="140"
            >
           </el-table-column>
           <el-table-column
-            prop="name"
+            prop="f_alreadyRepaidDate"
+            width="140"
             label="还款时间">
           </el-table-column>
           <el-table-column
-            prop="punishment"
+            prop="loseType"
             width="110"
             label="失败原因">
           </el-table-column>
           <el-table-column
-            prop="apply_time"
+            prop="returnChannel"
             width="140"
             label="还款方式">
           </el-table-column>
           <el-table-column
-            prop="arr_time"
+            prop="receivingChannel"
             label="收款渠道">
           </el-table-column>
           <el-table-column
-            prop="s_time"
+            prop="returnBank"
             label="还款银行">
           </el-table-column>
           <el-table-column
-            prop="ss_time"
+            prop="receiver"
             width="100"
             label="催收人员">
           </el-table-column>
           <el-table-column
-            prop="status"
-
+            prop="channelSources"
             label="渠道来源">
           </el-table-column>
           <el-table-column
-            prop="source_for"
-
+            prop="otherId"
+            width="140"
             label="三方订单">
           </el-table-column>
           <el-table-column
@@ -224,7 +225,37 @@
 </template>
 
 <script>
-  name:'paymentOrder'
+  import Vue from 'vue'
+  import { dateTimeFormat } from '@/utils/dateFormat.js'
+  export default{
+    name:'paymentOrder',
+    data(){
+      return {
+        payList:[]
+      }
+    },
+    mounted() {
+      this.HandleGetPayList()
+    },
+    methods:{
+      //获取还款数据
+      HandleGetPayList:function(){
+        Vue.http.get('/hxy/loanReturnService').then((res)=>{
+          res.list.forEach(function(item){
+            item.f_shouldReturnDate = dateTimeFormat(item.shouldReturnDate);
+            item.f_alreadyRepaidDate = dateTimeFormat(item.alreadyRepaidDate);
+          })
+          this.payList = res.list
+          //console.log(this.orderList)
+        })
+      },
+      //导出还款数据
+      HandleExportDate:function(){
+        window.open('http://localhost:8080/hxy/execl/LoanAllexport.do')
+      }
+    }
+  }
+
 </script>
 
 <style>

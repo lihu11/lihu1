@@ -4,7 +4,7 @@
     <div class="box-card">
       <el-row style="margin-bottom:15px;">
         <el-col :span="24" style="text-align: right;">
-          <el-button size="mini">导出Excel</el-button>
+          <el-button size="mini" @click='HandleExportDate'>导出Excel</el-button>
         </el-col>
       </el-row>
       <el-form :inline="true" class="demo-form-inline">
@@ -179,17 +179,17 @@
           </el-table-column>
           <el-table-column
             prop="f_paymentDate"
-            width="110"
+            width="140"
             label="到账时间">
           </el-table-column>
           <el-table-column
             prop="f_shouldReturnDate"
-            width="110"
+            width="140"
             label="应还日期">
           </el-table-column>
           <el-table-column
             prop="f_alreadyRepaidDate"
-            width="110"
+            width="140"
             label="实际还款日期">
           </el-table-column>
           <el-table-column
@@ -247,9 +247,10 @@
      this.HandleGetOrderList();
   },
     methods: {
+      //获取数据请求
       HandleGetOrderList:function() {
         Vue.http.get('/hxy/loanAllService').then((res)=>{
-          
+
           res.list.forEach(function(item){
             item.f_createTime = dateTimeFormat(item.createTime);
             item.f_paymentDate = dateTimeFormat(item.paymentDate);
@@ -259,6 +260,10 @@
           this.orderList = res.list
           //console.log(this.orderList)
         })
+      },
+      //导出数据
+      HandleExportDate:function(){
+        window.open('http://localhost:8080/hxy/execl/LoanAllexport.do')
       }
     }
   }
