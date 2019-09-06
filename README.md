@@ -15,44 +15,6 @@
 
 > 注：布局采用了 `display:flex` 实现，在IE上可能会出现一些不愉快的事情。
 
-
-## 实现组件
-
-+ [按钮组件](src/m/button)
-+ [多选框](src/m/checkbox)
-+ [switch](src/m/switch)
-+ [输入框](src/m/input)
-+ [导航](src/m/navbar)
-+ [dropdown](src/m/dropdown)
-+ [响应式布局](src/m/container)
-+ [加载等待](src/m/loading)
-+ [提示](src/m/alert)
-+ [回到到顶部](src/m/back-top)
-+ [盒子](src/m/box)
-+ [列表组](src/m/list-group)
-+ [虚拟键盘（中/英）](src/m/keyboard)
-+ [虚拟数字键盘](src/m/number-keyboard)
-
-
-## 页面
-
-+ [登录](http://vadmin.lanyueos.com/login)
-+ [注册](http://vadmin.lanyueos.com/register)
-+ [404](http://vadmin.lanyueos.com/404)
-+ [500](http://vadmin.lanyueos.com/500)
-
-+ [cnode](http://vadmin.lanyueos.com/cnode)
-
-
-## 截图
-
-![截图](2018-02-08_231542.png)
-
-![截图](20180117171004.png)
-
-![截图](20180117170917.png)
-
-
 ## 关于打包
 
 
@@ -86,14 +48,6 @@
 > 方便知道谁，什么时候打的包
 
 
-## 案例
-
-1、[**浙中牛牛**（预览版）](http://www.lanyueos.com:3003) 账号：admin 密码：123456 （请不要乱改数据）
-
-![浙中牛牛 预览版](20180117175701.png)
-
-
-
 ## Build Setup
 
 ``` bash
@@ -118,5 +72,3 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

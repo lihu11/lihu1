@@ -7,7 +7,7 @@
           <el-button size="mini">导出Excel</el-button>
         </el-col>
       </el-row>
-      <el-form :inline="true" class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline" ref='form' :model="form">
         <el-form-item label="订单编号">
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
@@ -18,16 +18,23 @@
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
         <el-form-item label="订单状态">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
+         <el-select  placeholder="全部" size="mini" v-model="form.f">
+            <el-option label="未还款" value="1"></el-option>
+            <el-option label="已还款" value="2"></el-option>
+            <el-option label="逾期中" value="3"></el-option>
+         </el-select>
         </el-form-item>
         <el-form-item label="现催收员" >
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
+         <el-select  placeholder="全部" size="mini" v-model="form.d">
+            <el-option label="居杰涛" value="1"></el-option>
+            <el-option label="齐康星" value="2"></el-option>
+            <el-option label="汪武新" value="3"></el-option>
+            <el-option label="姜元全" value="4"></el-option>
+            <el-option label="陈栋" value="5"></el-option>
+            <el-option label="彭彬" value="6"></el-option>
+            <el-option label="赵启" value="7"></el-option>
+            <el-option label="居强军" value="8"></el-option>
+         </el-select>
         </el-form-item>
         <el-form-item label="审核员">
           <el-input  placeholder="请输入" round size="mini"></el-input>
@@ -39,15 +46,29 @@
            <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
         <el-form-item label="跟进类型">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.a">
+             <el-option label="无人接听" value="1"></el-option>
+             <el-option label="无法接通" value="2"></el-option>
+             <el-option label="第三方转告" value="3"></el-option>
+             <el-option label="谈判" value="4"></el-option>
+             <el-option label="返款意愿低" value="5"></el-option>
+             <el-option label="无偿还能力" value="6"></el-option>
+             <el-option label="谈判-部分还款" value="7"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="渠道来源">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.f">
+             <el-option label="牛牛借" value="1"></el-option>
+             <el-option label="轻松借" value="2"></el-option>
+             <el-option label="月花花" value="3"></el-option>
+             <el-option label="vuq5" value="4"></el-option>
+             <el-option label="vur6" value="5"></el-option>
+             <el-option label="awu3" value="6"></el-option>
+             <el-option label="ivq4" value="7"></el-option>
+             <el-option label="kkfc" value="8"></el-option>
+             <el-option label="liga" value="9"></el-option>
+             <el-option label="fess" value="10"></el-option>
+             <el-option label="bsff" value="11"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="还款时间">
@@ -81,10 +102,10 @@
               </el-date-picker>
         </el-form-item>
         <el-form-item label="新老客">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="是" value="shi"></el-option>
-             <el-option label="否" value="fou"></el-option>
-          </el-select>
+         <el-select  placeholder="全部" size="mini" v-model="form.e">
+            <el-option label="新客" value="1"></el-option>
+            <el-option label="老客" value="2"></el-option>
+         </el-select>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" size="mini"  class="searchBtn">查询</el-button>
@@ -207,13 +228,9 @@
     <div class="pageBox">
       <el-pagination
       background
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :page-size="10"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :total="0">
     </el-pagination>
     </div>
   </div>
@@ -221,11 +238,21 @@
 
 <script>
   export default{
-  name:'collectionOrder',
-  data() {
-    return {
+     name:'collectionOrder',
+    data(){
+      return{
+        //form
+        form:{
+          a:'',
+          b:'',
+          c:'',
+          d:'',
+          e:'',
+          f:'',
+          g:''
+        },
+      }
     }
-  }
   }
 </script>
 

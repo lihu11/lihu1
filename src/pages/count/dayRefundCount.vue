@@ -3,10 +3,10 @@
     <div class="box-card">
       <el-row style="margin-bottom:15px;">
         <el-col :span="24" style="text-align: right;">
-          <el-button size="mini">导出Excel</el-button>
+          <el-button size="mini" @click='handleExport'>导出Excel</el-button>
         </el-col>
       </el-row>
-      <el-form :inline="true" class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline" ref='form' :model="form">
         <el-form-item label="日期">
            <el-date-picker
                 type="daterange"
@@ -18,13 +18,25 @@
               </el-date-picker>
         </el-form-item>
         <el-form-item label="客户状态">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.a">
+             <el-option label="普通" value="1"></el-option>
+             <el-option label="黑名单" value="2"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="渠道名称">
-          <el-input  placeholder="请输入" round size="mini"></el-input>
+          <el-select  placeholder="全部" size="mini" v-model="form.f">
+             <el-option label="牛牛借" value="1"></el-option>
+             <el-option label="轻松借" value="2"></el-option>
+             <el-option label="月花花" value="3"></el-option>
+             <el-option label="vuq5" value="4"></el-option>
+             <el-option label="vur6" value="5"></el-option>
+             <el-option label="awu3" value="6"></el-option>
+             <el-option label="ivq4" value="7"></el-option>
+             <el-option label="kkfc" value="8"></el-option>
+             <el-option label="liga" value="9"></el-option>
+             <el-option label="fess" value="10"></el-option>
+             <el-option label="bsff" value="11"></el-option>
+          </el-select>
         </el-form-item>
         <el-button type="warning" size="mini">查询</el-button>
       </el-form>
@@ -44,148 +56,129 @@
               size='mini'
               border
               style="width: 100%"
+              :data="reList"
               >
               <el-table-column
-                prop="id"
+                type="index"
                 label="序号"
                 width="60"
                >
               </el-table-column>
               <el-table-column
-                prop="order-id"
+                prop="date"
                 label="应还日期">
               </el-table-column>
               <el-table-column
-                prop="username"
+                prop="num"
                 label="应还订单数">
               </el-table-column>
               <el-table-column
-                prop="phone"
+                prop="befortimes"
                 label="提前还款单数">
               </el-table-column>
               <el-table-column
-                prop="loan_day"
+                prop="beformoney"
                 label="提前还款金额">
               </el-table-column>
               <el-table-column
-                prop="order_status"
+                prop="nowtimes"
                 label="正常还款订单数"
                >
               </el-table-column>
               <el-table-column
-                prop="is_show"
+                prop="nowmoney"
                 label="正常还款金额">
               </el-table-column>
               <el-table-column
-                prop="loan_money"
+                prop="latetimes"
                 label="展期订单数">
               </el-table-column>
               <el-table-column
-                prop="arrival_amount"
+                prop="latetimes"
                 label="逾期展期订单数">
               </el-table-column>
               <el-table-column
-                prop="service_charge"
+                prop="latemoney"
                 label="逾期展期订单金额">
               </el-table-column>
               <el-table-column
-                prop="days_overdue"
+                prop="zqmoney"
                 label="展期金额">
               </el-table-column>
               <el-table-column
-                prop="money_overdue"
                 label="减免金额">
               </el-table-column>
               <el-table-column
-                prop="should_amount"
                 label="减免订单数"
                >
               </el-table-column>
               <el-table-column
-                prop="service_charge"
+                prop="yhmoney"
                 label="逾期还款订单数">
               </el-table-column>
               <el-table-column
-                prop="days_overdue"
+                prop="whmoney"
                 label="逾期未还订单数">
               </el-table-column>
               <el-table-column
-                prop="money_overdue"
                 label="部分还款金额">
               </el-table-column>
               <el-table-column
-                prop="should_amount"
                 label="还款订单减免金额"
                >
               </el-table-column>
               <el-table-column
-                prop="service_charge"
-
+                prop="latesunmoney"
                 label="逾期还款订单总金额">
               </el-table-column>
               <el-table-column
-                prop="days_overdue"
-
                 label="正常还款减免金额">
               </el-table-column>
               <el-table-column
-                prop="money_overdue"
-
+                prop="repaidmoney"
                 label="应还金额">
               </el-table-column>
               <el-table-column
-                prop="should_amount"
-
+                prop="allnum"
                 label="总实还金额"
                >
               </el-table-column>
               <el-table-column
-                prop="service_charge"
-
+                prop="cost"
                 label="放款成本">
               </el-table-column>
               <el-table-column
-                prop="days_overdue"
-
+                prop="overdue"
                 label="逾期费用">
               </el-table-column>
               <el-table-column
-                prop="money_overdue"
-
+                prop="firstoverdue"
                 label="订单首逾率">
               </el-table-column>
               <el-table-column
-                prop="should_amount"
-
                 label="1日回款率(订单)"
                >
               </el-table-column>
               <el-table-column
-                prop="service_charge"
-
                 label="3日回款率(订单)">
               </el-table-column>
               <el-table-column
-                prop="days_overdue"
-
                 label="7日回款率(订单)">
               </el-table-column>
               <el-table-column
-                prop="money_overdue"
-
                 label="15日回款率(订单)">
               </el-table-column>
               <el-table-column
-                prop="should_amount"
+              prop="leanoverdue"
                 label="当前订单逾期率"
                >
               </el-table-column>
               <el-table-column
-                prop="money_overdue"
+                prop="secondlean"
                 label="复借率">
               </el-table-column>
               <el-table-column
-                prop="should_amount"
+                prop="moneyoverdue"
                 label="金额首逾"
                >
               </el-table-column>
@@ -194,13 +187,12 @@
         <div class="pageBox">
           <el-pagination
           background
-          @size-change="handleSizeChange"
+          @size-change="handleChangepageSize"
           @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          :current-page="currentPage"
+          :page-size="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400">
+          :total="total">
         </el-pagination>
         </div>
   </div>
@@ -208,7 +200,78 @@
 </template>
 
 <script>
-  name:'dayRefundCount'
+import Vue from 'vue'
+export default{
+	name:'dayRefundCount',
+	data(){
+    return{
+      //form
+      form:{
+        a:'',
+        b:'',
+        c:'',
+        d:'',
+        e:'',
+        f:'',
+        g:''
+      },
+      reList:[],
+      currentPage:1,
+      pageSize:10,
+      total:0
+    }
+	},
+	mounted() {
+    this.HandleGetList(1,10)
+	},
+	methods:{
+    //导出数据
+    handleExport:function(){
+      window.open('/hxy/execl/EveryDailyReturn.do');
+    },
+		HandleGetList:function(currentPage,pageSize){
+      this.HandleGetMaxNum()
+			Vue.http.get('/hxy/channel/getDailyReturn.do?page=' + currentPage +'&num=' + pageSize).then(
+				(res)=>{
+          this.reList = res.data
+				}
+			)
+		},
+    HandleGetMaxNum:function(){
+      Vue.http.get('/hxy/channel/getDailyReturnNum.do').then((res)=>{
+        //console.log(res)
+        this.total = res.data
+      })
+    },
+   //页码切换
+   handleCurrentChange: function (currentPage) {
+     // console.log(curren - tpage);
+     this.currentPage = currentPage;
+     this.HandleGetList(currentPage,this.pageSize);
+     this.currentChangePage(this.list, currentPage);
+     // console.log(currentPage);
+   },
+   //分页处理
+   currentChangePage: function (list, currentPage) {
+       var from = (currentPage - 1) * this.pageSize;
+       var to = currentPage * this.pageSize;
+       console.log(to)
+       this.tempList = [];
+       for (; from < to; from++) {
+           if (list[from]) {
+               this.tempList.push(list[from]);
+           }
+       }
+   },
+   //改变大小
+   handleChangepageSize:function(pageSize){
+     this.pageSize = pageSize;
+     this.HandleGetList(this.currentPage,pageSize);
+     this.currentChangePage(this.list,this.currentPage);
+   }
+	}
+}
+
 </script>
 
 <style scoped>

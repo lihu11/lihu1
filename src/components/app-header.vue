@@ -1,9 +1,9 @@
 <template>
-  <m-navbar :theme="theme.theme.headerTheme">
-    <m-navbar-brand>
+  <div :theme="theme.theme.headerTheme">
+    <div>
       <i class="side-switch iconfont icon-jilu" @click="handleSwitchSide"></i>
-    </m-navbar-brand>
-  </m-navbar>
+    </div>
+  </div>
 </template>
 <script type="text/javascript">
 import { mapActions, mapState } from 'vuex'
@@ -66,7 +66,9 @@ export default {
   display: inline-block;
   font-size: 20px;
   cursor: pointer;
-  color: inherit;
+  color: white;
+  height: 50px;
+  line-height: 50px;
 }
 .side-switch:hover {
   color: #fff;

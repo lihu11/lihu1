@@ -14,13 +14,8 @@ module.exports = {
       '/hxy': {
         target: 'http://127.0.0.1:8000/hxy/',
         changeOrigin: true,
-<<<<<<< HEAD
         pathRewrite: {
           '^/hxy': ''
-=======
-        pathRewrite: {  
-          '^/hxy': '' 
->>>>>>> 7193ed03bae7ecfc98be317478f1f42e518a9b37
         }
       }
     },

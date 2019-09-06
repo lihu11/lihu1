@@ -7,7 +7,7 @@
           <el-button size="mini" @click='HandleExportDate'>导出Excel</el-button>
         </el-col>
       </el-row>
-      <el-form :inline="true" class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline" ref='form' :model="form">
         <el-form-item label="订单编号">
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
@@ -18,30 +18,46 @@
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
         <el-form-item label="订单状态">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.a">
+             <el-option label="未还款" value="1"></el-option>
+             <el-option label="已还款" value="2"></el-option>
+             <el-option label="逾期中" value="3"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="渠道来源" >
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.b">
+             <el-option label="牛牛借" value="1"></el-option>
+             <el-option label="轻松借" value="2"></el-option>
+             <el-option label="月花花" value="3"></el-option>
+             <el-option label="vuq5" value="4"></el-option>
+             <el-option label="vur6" value="5"></el-option>
+             <el-option label="awu3" value="6"></el-option>
+             <el-option label="ivq4" value="7"></el-option>
+             <el-option label="kkfc" value="8"></el-option>
+             <el-option label="liga" value="9"></el-option>
+             <el-option label="fess" value="10"></el-option>
+             <el-option label="bsff" value="11"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="审核员">
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
-        <el-form-item label="先催收员">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+        <el-form-item label="现催收员">
+          <el-select  placeholder="全部" size="mini" v-model="form.c">
+             <el-option label="居杰涛" value="1"></el-option>
+             <el-option label="齐康星" value="2"></el-option>
+             <el-option label="汪武新" value="3"></el-option>
+             <el-option label="姜元全" value="4"></el-option>
+             <el-option label="陈栋" value="5"></el-option>
+             <el-option label="彭彬" value="6"></el-option>
+             <el-option label="赵启" value="7"></el-option>
+             <el-option label="居强军" value="8"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="客户状态">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.d">
+             <el-option label="普通" value="1"></el-option>
+             <el-option label="黑名单" value="2"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="申请时间">
@@ -88,7 +104,7 @@
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
         <el-form-item label="是否展期">
-          <el-select  placeholder="全部" size="mini">
+          <el-select  placeholder="全部" size="mini" v-model="form.e">
              <el-option label="是" value="shi"></el-option>
              <el-option label="否" value="fou"></el-option>
           </el-select>
@@ -221,13 +237,12 @@
     <div class="pageBox">
       <el-pagination
       background
-      @size-change="handleSizeChange"
+      @size-change="handleChangepageSize"
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :current-page="currentPage"
+      :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :total="total">
     </el-pagination>
     </div>
   </div>
@@ -240,17 +255,38 @@
   name: 'orderList',
   data () {
     return {
+	  //form
+	  form:{
+		  a:'',
+		  b:'',
+		  c:'',
+		  d:'',
+		  e:'',
+		  f:''
+	  },
+      //订单列表数据
       orderList:[],
+      //总数据条数
+      total:0,
+      //当前页(默认为1)
+      currentPage:1,
+      //页面大小
+      pageSize:10,
+      //list
+      list:{},
+      //tempList
+      tempList:[]
     }
   },
   created() {
-     this.HandleGetOrderList();
+     this.HandleGetOrderList(1,10);
   },
     methods: {
       //获取数据请求
-      HandleGetOrderList:function() {
-        Vue.http.get('/hxy/loanAllService').then((res)=>{
-
+      HandleGetOrderList:function(currentPage,pageSize) {
+        console.log(currentPage)
+        Vue.http.get('/hxy/loanAllService?currentPage=' + currentPage + '&pageSize='+pageSize).then((res)=>{
+          this.total = res.totalCount;
           res.list.forEach(function(item){
             item.f_createTime = dateTimeFormat(item.createTime);
             item.f_paymentDate = dateTimeFormat(item.paymentDate);
@@ -264,6 +300,32 @@
       //导出数据
       HandleExportDate:function(){
         window.open('http://localhost:8080/hxy/execl/LoanAllexport.do')
+      },
+      //页码切换
+      handleCurrentChange: function (currentPage) {
+        // console.log(curren - tpage);
+        this.currentPage = currentPage;
+        this.HandleGetOrderList(currentPage,this.pageSize);
+        this.currentChangePage(this.list, currentPage);
+        // console.log(currentPage);
+      },
+      //分页处理
+      currentChangePage: function (list, currentPage) {
+          var from = (currentPage - 1) * this.pageSize;
+          var to = currentPage * this.pageSize;
+          console.log(to)
+          this.tempList = [];
+          for (; from < to; from++) {
+              if (list[from]) {
+                  this.tempList.push(list[from]);
+              }
+          }
+      },
+      //改变大小
+      handleChangepageSize:function(pageSize){
+        this.pageSize = pageSize;
+        this.HandleGetOrderList(this.currentPage,pageSize);
+        this.currentChangePage(this.list,this.currentPage);
       }
     }
   }
