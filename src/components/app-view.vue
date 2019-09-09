@@ -35,7 +35,6 @@
         </el-container>
       </el-main>
     </el-container>
-    <m-back-top body-id="appBody"></m-back-top>
   </el-container>
 
 </template>

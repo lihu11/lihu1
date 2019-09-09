@@ -2,7 +2,6 @@
   <div>
     <div class="order-table">
           <el-table
-              :data='tableData'
               height="480px"
               size='mini'
               border
@@ -59,13 +58,9 @@
         <div class="pageBox">
           <el-pagination
           background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          :page-size="10"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400">
+          :total="0">
         </el-pagination>
         </div>
   </div>
@@ -76,18 +71,6 @@
     name:'collectionGroup',
     data(){
       return{
-      tableData:[
-        {
-          id: '1',
-          order_id: '110011',
-          username: '张三',
-          phone: '15070634344',
-          loan_day: 7,
-          order_status: '风控不通过',
-          is_show: '否',
-          loan_money: '5000'
-        }
-      ]
     }
     }
   }

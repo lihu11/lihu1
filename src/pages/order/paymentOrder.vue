@@ -6,7 +6,7 @@
           <el-button size="mini" @click='HandleExportDate'>导出Excel</el-button>
         </el-col>
       </el-row>
-      <el-form :inline="true" class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline" ref='form' :model="form">
         <el-form-item label="还款时间">
            <el-date-picker
                 type="daterange"
@@ -37,54 +37,82 @@
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
         <el-form-item label="三方订单号">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
+          <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
         <el-form-item label="订单状态" >
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.a">
+             <el-option label="未还款" value="1"></el-option>
+             <el-option label="已还款" value="2"></el-option>
+             <el-option label="逾期中" value="3"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="还款方式">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.b">
+             <el-option label="线上" value="1"></el-option>
+             <el-option label="线下" value="2"></el-option>
+             <el-option label="代扣" value="3"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="收款渠道">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.c">
+             <el-option label="微信" value="1"></el-option>
+             <el-option label="支付宝" value="2"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="还款银行">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.d">
+             <el-option label="邮政储蓄银行" value="1"></el-option>
+             <el-option label="中国工商银行" value="2"></el-option>
+             <el-option label="中国农业银行" value="3"></el-option>
+             <el-option label="中国建设银行" value="4"></el-option>
+             <el-option label="交通银行" value="5"></el-option>
+             <el-option label="中信银行" value="6"></el-option>
+             <el-option label="光大银行" value="7"></el-option>
+             <el-option label="民生银行" value="8"></el-option>
+             <el-option label="招商银行" value="9"></el-option>
+             <el-option label="兴业银行" value="10"></el-option>
+             <el-option label="浦东发展银行" value="11"></el-option>
+             <el-option label="上海银行" value="12"></el-option>
+             <el-option label="平安银行" value="13"></el-option>
+             <el-option label="北京银行" value="14"></el-option>
+             <el-option label="华夏银行" value="15"></el-option>
+             <el-option label="广发银行" value="16"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="催收人员">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.e">
+             <el-option label="居杰涛" value="1"></el-option>
+             <el-option label="齐康星" value="2"></el-option>
+             <el-option label="汪武新" value="3"></el-option>
+             <el-option label="姜元全" value="4"></el-option>
+             <el-option label="陈栋" value="5"></el-option>
+             <el-option label="彭彬" value="6"></el-option>
+             <el-option label="赵启" value="7"></el-option>
+             <el-option label="居强军" value="8"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="渠道来源">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.f">
+             <el-option label="牛牛借" value="1"></el-option>
+             <el-option label="轻松借" value="2"></el-option>
+             <el-option label="月花花" value="3"></el-option>
+             <el-option label="vuq5" value="4"></el-option>
+             <el-option label="vur6" value="5"></el-option>
+             <el-option label="awu3" value="6"></el-option>
+             <el-option label="ivq4" value="7"></el-option>
+             <el-option label="kkfc" value="8"></el-option>
+             <el-option label="liga" value="9"></el-option>
+             <el-option label="fess" value="10"></el-option>
+             <el-option label="bsff" value="11"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="还款次数">
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
         <el-form-item label="是否复借">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.g">
+             <el-option label="是" value="1"></el-option>
+             <el-option label="否" value="2"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
@@ -212,13 +240,12 @@
     <div class="pageBox">
       <el-pagination
       background
-      @size-change="handleSizeChange"
+      @size-change='handleChangepageSize'
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :current-page="currentPage"
+      :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :total="total">
     </el-pagination>
     </div>
   </div>
@@ -231,27 +258,74 @@
     name:'paymentOrder',
     data(){
       return {
-        payList:[]
+        //form
+        form:{
+          a:'',
+          b:'',
+          c:'',
+          d:'',
+          e:'',
+          f:'',
+          g:''
+        },
+        //获取到的数据
+        payList:[],
+        //总数据条数
+        total:0,
+        //当前页(默认为1)
+        currentPage:1,
+        //页面大小
+        pageSize:10,
+        //list
+        list:{},
+        //tempList
+        tempList:[]
       }
     },
     mounted() {
-      this.HandleGetPayList()
+      this.HandleGetPayList(1,10)
     },
     methods:{
       //获取还款数据
-      HandleGetPayList:function(){
-        Vue.http.get('/hxy/loanReturnService').then((res)=>{
+      HandleGetPayList:function(currentPage,pageSize){
+        Vue.http.get('/hxy/loanReturnService?currentPage=' + currentPage + '&pageSize='+pageSize).then((res)=>{
+          this.total = res.totalCount;
           res.list.forEach(function(item){
             item.f_shouldReturnDate = dateTimeFormat(item.shouldReturnDate);
             item.f_alreadyRepaidDate = dateTimeFormat(item.alreadyRepaidDate);
           })
           this.payList = res.list
-          //console.log(this.orderList)
         })
       },
       //导出还款数据
       HandleExportDate:function(){
-        window.open('http://localhost:8080/hxy/execl/LoanAllexport.do')
+        window.open('http://localhost:8080/hxy/execl/LoanReturnexport.do')
+      },
+      //页码切换
+      handleCurrentChange: function (currentPage) {
+        // console.log(curren - tpage);
+        this.currentPage = currentPage;
+        this.HandleGetPayList(currentPage,this.pageSize);
+        this.currentChangePage(this.list, currentPage);
+        // console.log(currentPage);
+      },
+      //分页处理
+      currentChangePage: function (list, currentPage) {
+          var from = (currentPage - 1) * this.pageSize;
+          var to = currentPage * this.pageSize;
+          console.log(to)
+          this.tempList = [];
+          for (; from < to; from++) {
+              if (list[from]) {
+                  this.tempList.push(list[from]);
+              }
+          }
+      },
+      //改变大小
+      handleChangepageSize:function(pageSize){
+        this.pageSize = pageSize;
+        this.HandleGetPayList(this.currentPage,pageSize);
+        this.currentChangePage(this.list,this.currentPage);
       }
     }
   }

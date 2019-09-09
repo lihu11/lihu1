@@ -6,7 +6,7 @@
           <el-button size="mini">导出Excel</el-button>
         </el-col>
       </el-row>
-      <el-form :inline="true" class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline" ref='form' :model="form">
         <el-form-item label="日期">
            <el-date-picker
                 type="daterange"
@@ -27,39 +27,45 @@
          <el-input  placeholder="请输入" round size="mini"></el-input>
        </el-form-item>
        <el-form-item label="催收人员">
-         <el-select  placeholder="全部" size="mini">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+         <el-select  placeholder="全部" size="mini" v-model="form.d">
+            <el-option label="居杰涛" value="1"></el-option>
+            <el-option label="齐康星" value="2"></el-option>
+            <el-option label="汪武新" value="3"></el-option>
+            <el-option label="姜元全" value="4"></el-option>
+            <el-option label="陈栋" value="5"></el-option>
+            <el-option label="彭彬" value="6"></el-option>
+            <el-option label="赵启" value="7"></el-option>
+            <el-option label="居强军" value="8"></el-option>
          </el-select>
        </el-form-item>
        <el-form-item label="订单状态">
-         <el-select  placeholder="全部" size="mini">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+         <el-select  placeholder="全部" size="mini" v-model="form.f">
+            <el-option label="未还款" value="1"></el-option>
+            <el-option label="已还款" value="2"></el-option>
+            <el-option label="逾期中" value="3"></el-option>
          </el-select>
        </el-form-item>
        <el-form-item label="收款订单号">
-         <el-select  placeholder="全部" size="mini">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-         </el-select>
+         <el-input  placeholder="请输入" round size="mini"></el-input>
        </el-form-item>
        <el-form-item label="收款渠道">
-         <el-select  placeholder="全部" size="mini">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+         <el-select  placeholder="全部" size="mini" v-model="form.c">
+            <el-option label="微信" value="1"></el-option>
+            <el-option label="支付宝" value="2"></el-option>
          </el-select>
        </el-form-item>
        <el-form-item label="申请费用类型">
-         <el-select  placeholder="全部" size="mini">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+         <el-select  placeholder="全部" size="mini" v-model="form.a" >
+            <el-option label="续期" value="1"></el-option>
+            <el-option label="还款" value="2"></el-option>
+            <el-option label="部分还款" value="3"></el-option>
          </el-select>
        </el-form-item>
        <el-form-item label="审核状态">
-         <el-select  placeholder="全部" size="mini">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
+         <el-select  placeholder="全部" size="mini" v-model="form.b">
+            <el-option label="未审核" value="1"></el-option>
+             <el-option label="审核通过" value="2"></el-option>
+            <el-option label="审核不通过" value="3"></el-option>
          </el-select>
        </el-form-item>
         <el-form-item>
@@ -70,7 +76,6 @@
     <div class="mytable">
       <el-table
           size='mini'
-          :data="tableData"
           border
           style="width: 100%">
           <el-table-column
@@ -149,20 +154,33 @@
     <div class="pageBox">
       <el-pagination
       background
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :page-size="10"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :total="40">
     </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
-  name:'offlinePayment'
+  export default{
+     name:'offlinePayment',
+    data(){
+      return{
+        //form
+        form:{
+          a:'',
+          b:'',
+          c:'',
+          d:'',
+          e:'',
+          f:'',
+          g:''
+        },
+      }
+    }
+  }
+
 </script>
 
 <style>

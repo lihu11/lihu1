@@ -3,14 +3,23 @@
     <div class="box-card">
       <el-row style="margin-bottom:15px;">
         <el-col :span="24" style="text-align: right;">
-          <el-button size="mini">导出Excel</el-button>
+          <el-button size="mini" @click='handleExport'>导出Excel</el-button>
         </el-col>
       </el-row>
-      <el-form :inline="true" class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline" ref='form' :model="form">
         <el-form-item label="渠道名称">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.f">
+             <el-option label="牛牛借" value="1"></el-option>
+             <el-option label="轻松借" value="2"></el-option>
+             <el-option label="月花花" value="3"></el-option>
+             <el-option label="vuq5" value="4"></el-option>
+             <el-option label="vur6" value="5"></el-option>
+             <el-option label="awu3" value="6"></el-option>
+             <el-option label="ivq4" value="7"></el-option>
+             <el-option label="kkfc" value="8"></el-option>
+             <el-option label="liga" value="9"></el-option>
+             <el-option label="fess" value="10"></el-option>
+             <el-option label="bsff" value="11"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="日期">
@@ -38,88 +47,89 @@
               size='mini'
               border
               style="width: 100%"
+              :data='c_list'
               >
               <el-table-column
-                prop="id"
+                type="index"
                 label="序号"
                 width="60"
                >
               </el-table-column>
               <el-table-column
-                prop="order-id"
+                prop="createTime"
                 label="注册日期">
               </el-table-column>
               <el-table-column
-                prop="username"
+                prop="channelName"
                 label="商务名称">
               </el-table-column>
               <el-table-column
-                prop="phone"
+                prop="blackHitRate"
                 width="118"
                 label="黑名单命中率">
               </el-table-column>
               <el-table-column
-                prop="loan_day"
+                prop="channelType"
                 label="渠道名称">
               </el-table-column>
               <el-table-column
-                prop="order_status"
+                prop="pv"
                 label="落地页PV"
                >
               </el-table-column>
               <el-table-column
-                prop="is_show"
+                prop="uv"
                 label="落地页UV">
               </el-table-column>
               <el-table-column
-                prop="loan_money"
+                prop="landPageClick"
                 width="118"
                 label="落地页下载点击数">
               </el-table-column>
               <el-table-column
-                prop="arrival_amount"
+                prop="registNum"
                 width="118"
                 label="渠道注册用户数">
               </el-table-column>
               <el-table-column
-                prop="service_charge"
+                prop="activationNum"
                 width="118"
                 label="渠道激活用户数">
               </el-table-column>
               <el-table-column
-                prop="days_overdue"
+                prop="authenticationNum"
                 width="118"
                 label="渠道认证用户数">
               </el-table-column>
               <el-table-column
-                prop="money_overdue"
+                prop="extractNum"
                 width="118"
                 label="渠道提件用户数">
               </el-table-column>
               <el-table-column
-                prop="should_amount"
+                prop="leanNum"
                 width="118"
                 label="渠道借款用户数"
                >
               </el-table-column>
               <el-table-column
-                prop="name"
+                prop="firstNum"
                 label="首借人数">
               </el-table-column>
               <el-table-column
-                prop="name"
+                prop="lateNum"
                 label="首逾人数">
               </el-table-column>
               <el-table-column
-                prop="punishment"
+                prop="latePercentage"
                 label="金额首逾率">
               </el-table-column>
               <el-table-column
-                prop="apply_time"
+                prop="orderPercentage"
                 label="订单首逾率">
               </el-table-column>
               <el-table-column
-                prop="arr_time"
+                prop="subscriptionRate"
                 width="60"
                 label="下单率">
               </el-table-column>
@@ -128,13 +138,12 @@
         <div class="pageBox">
           <el-pagination
           background
-          @size-change="handleSizeChange"
+          @size-change="handleChangepageSize"
           @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          :current-page="currentPage"
+          :page-size="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400">
+          :total="total">
         </el-pagination>
         </div>
   </div>
@@ -142,7 +151,79 @@
 </template>
 
 <script>
-  name:'dayChannelCount'
+  import Vue from 'vue'
+  export default{
+   name:'dayChannelCount',
+    data(){
+      return{
+        //form
+        form:{
+          a:'',
+          b:'',
+          c:'',
+          d:'',
+          e:'',
+          f:'',
+          g:''
+        },
+        c_list:[],
+        total:0,
+        currentPage:1,
+        pageSize:10
+      }
+    },
+    mounted() {
+      this.handleGetList(1,10)
+    },
+    methods:{
+      //导出数据
+      handleExport:function(){
+        window.open('/hxy/execl/EveryChannel.do');
+      },
+      //获取数据
+      handleGetList:function(currentPage,pageSize){
+        this.handleGetMax()
+        Vue.http.get('/hxy/channel/getChannel.do?page='+ currentPage +'&num='+pageSize).then(
+          (res)=>{
+            this.c_list = res.data
+          }
+        )
+      },
+      //获取最大条数
+      handleGetMax:function(){
+        Vue.http.get('/hxy/channel/getChannelNum.do').then(
+          (res) => {
+            this.total = res.data
+          }
+        )
+      },
+     //页码切换
+     handleCurrentChange: function (currentPage) {
+       // console.log(curren - tpage);
+       this.currentPage = currentPage;
+       this.handleGetList(currentPage,this.pageSize);
+       this.currentChangePage(this.list, currentPage);
+       // console.log(currentPage);
+     },
+     //分页处理
+     currentChangePage: function (list, currentPage) {
+         var from = (currentPage - 1) * this.pageSize;
+         var to = currentPage * this.pageSize;
+         this.tempList = [];
+         for (; from < to; from++) {
+             if (list[from]) {
+                 this.tempList.push(list[from]);
+             }
+         }
+     },
+     //改变大小
+     handleChangepageSize:function(pageSize){
+       this.pageSize = pageSize;
+       this.handleGetList(this.currentPage,pageSize);
+       this.currentChangePage(this.list,this.currentPage);
+     }
+    }
+  }
 </script>
 
 <style scoped>

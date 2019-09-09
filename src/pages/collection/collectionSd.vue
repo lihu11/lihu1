@@ -6,17 +6,23 @@
           <el-button size="mini" type="warning">人员添加</el-button>
         </el-col>
       </el-row>
-      <el-form :inline="true" class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline" ref='form' :model="form">
         <el-form-item label="分单组">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.a">
+             <el-option label="" value="shanghai"></el-option>
              <el-option label="区域二" value="beijing"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="催收人员">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.d">
+             <el-option label="居杰涛" value="1"></el-option>
+             <el-option label="齐康星" value="2"></el-option>
+             <el-option label="汪武新" value="3"></el-option>
+             <el-option label="姜元全" value="4"></el-option>
+             <el-option label="陈栋" value="5"></el-option>
+             <el-option label="彭彬" value="6"></el-option>
+             <el-option label="赵启" value="7"></el-option>
+             <el-option label="居强军" value="8"></el-option>
           </el-select>
         </el-form-item>
         <el-button type="warning" size="mini">查询</el-button>
@@ -24,7 +30,6 @@
     </div>
     <div class="order-table">
           <el-table
-              :data='tableData'
               height="480px"
               size='mini'
               border
@@ -74,13 +79,9 @@
         <div class="pageBox">
           <el-pagination
           background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage4"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
+          :page-size="10"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="400">
+          :total="0">
         </el-pagination>
         </div>
   </div>
@@ -91,18 +92,16 @@
     name: 'collectionSd',
     data(){
       return{
-      tableData:[
-        {
-          id: '1',
-          order_id: '110011',
-          username: '张三',
-          phone: '15070634344',
-          loan_day: 7,
-          order_status: '风控不通过',
-          is_show: '否',
-          loan_money: '5000'
-        }
-      ]
+        //form
+        form:{
+          a:'',
+          b:'',
+          c:'',
+          d:'',
+          e:'',
+          f:'',
+          g:''
+        },
     }
     }
   }

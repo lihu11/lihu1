@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="box-card">
-      <el-form :inline="true" class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline" ref='form' :model="form">
         <el-form-item label="订单编号">
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
@@ -32,9 +32,10 @@
               </el-date-picker>
         </el-form-item>
         <el-form-item label="第一次结果">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.a">
+             <el-option label="处理失败" value="1"></el-option>
+             <el-option label="待处理" value="2"></el-option>
+             <el-option label="处理完成" value="3"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item>
@@ -51,7 +52,6 @@
       <el-table
           height="480px"
           size='mini'
-          :data="tableData"
           border
           style="width: 100%">
           <el-table-column
@@ -98,20 +98,26 @@
     <div class="pageBox">
       <el-pagination
       background
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :page-size="10"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :total="30">
     </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
-  name:'withholdingOrders'
+  export default{
+    name:'withholdingOrders',
+    data(){
+      return{
+        form:{
+          a:''
+        }
+      }
+    }
+  }
+
 </script>
 
 <style>

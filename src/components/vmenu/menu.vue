@@ -81,7 +81,7 @@ export default {
     router: Boolean,
     menus: {
       type: Array,
-      required: true
+      required: false
     }
   },
   components: {

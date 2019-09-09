@@ -6,7 +6,7 @@
           <el-button size="mini" @click='HandleExportDate'>导出Excel</el-button>
         </el-col>
       </el-row>
-      <el-form :inline="true" class="demo-form-inline">
+      <el-form :inline="true" class="demo-form-inline" ref='form' :model="form">
         <el-form-item label="姓名">
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
@@ -17,39 +17,65 @@
           <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
         <el-form-item label="三方订单号">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
+          <el-input  placeholder="请输入" round size="mini"></el-input>
         </el-form-item>
         <el-form-item label="期限" >
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.a">
+             <el-option label="1" value="1"></el-option>
+             <el-option label="2" value="2"></el-option>
+             <el-option label="3" value="3"></el-option>
+             <el-option label="4" value="4"></el-option>
+             <el-option label="5" value="5"></el-option>
+             <el-option label="6" value="6"></el-option>
+             <el-option label="7" value="7"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="订单状态">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.b">
+             <el-option label="未还款" value="1"></el-option>
+             <el-option label="已还款" value="2"></el-option>
+             <el-option label="逾期中" value="3"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="放款银行">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.c">
+             <el-option label="邮政储蓄银行" value="1"></el-option>
+             <el-option label="中国工商银行" value="2"></el-option>
+             <el-option label="中国农业银行" value="3"></el-option>
+             <el-option label="中国建设银行" value="4"></el-option>
+             <el-option label="交通银行" value="5"></el-option>
+             <el-option label="中信银行" value="6"></el-option>
+             <el-option label="光大银行" value="7"></el-option>
+             <el-option label="民生银行" value="8"></el-option>
+             <el-option label="招商银行" value="9"></el-option>
+             <el-option label="兴业银行" value="10"></el-option>
+             <el-option label="浦东发展银行" value="11"></el-option>
+             <el-option label="上海银行" value="12"></el-option>
+             <el-option label="平安银行" value="13"></el-option>
+             <el-option label="北京银行" value="14"></el-option>
+             <el-option label="华夏银行" value="15"></el-option>
+             <el-option label="广发银行" value="16"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="渠道来源">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.d">
+             <el-option label="牛牛借" value="1"></el-option>
+             <el-option label="轻松借" value="2"></el-option>
+             <el-option label="月花花" value="3"></el-option>
+             <el-option label="vuq5" value="4"></el-option>
+             <el-option label="vur6" value="5"></el-option>
+             <el-option label="awu3" value="6"></el-option>
+             <el-option label="ivq4" value="7"></el-option>
+             <el-option label="kkfc" value="8"></el-option>
+             <el-option label="liga" value="9"></el-option>
+             <el-option label="fess" value="10"></el-option>
+             <el-option label="bsff" value="11"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="新老客">
-          <el-select  placeholder="全部" size="mini">
-             <el-option label="区域一" value="shanghai"></el-option>
-             <el-option label="区域二" value="beijing"></el-option>
+          <el-select  placeholder="全部" size="mini" v-model="form.e">
+             <el-option label="新客" value="1"></el-option>
+             <el-option label="老客" value="2"></el-option>
           </el-select>
         </el-form-item>
        <el-form-item label="到账时间">
@@ -189,13 +215,12 @@
     <div class="pageBox">
       <el-pagination
       background
-      @size-change="handleSizeChange"
+      @size-change="handleChangepageSize"
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :current-page="currentPage"
+      :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :total="total">
     </el-pagination>
     </div>
   </div>
@@ -208,16 +233,37 @@
     name:'loanOrders',
     data(){
       return {
-        loanList:[]
+        //form
+        form:{
+          a:'',
+          b:'',
+          c:'',
+          d:'',
+          e:'',
+          f:'',
+          g:''
+        },
+        loanList:[],
+        //总数据条数
+        total:0,
+        //当前页(默认为1)
+        currentPage:1,
+        //页面大小
+        pageSize:10,
+        //list
+        list:{},
+        //tempList
+        tempList:[]
       }
     },
     mounted() {
-      this.HandleGetLoanList()
+      this.HandleGetLoanList(1,10)
     },
     methods:{
       //获取放款订单数据
-      HandleGetLoanList:function(){
-        Vue.http.get('/hxy/loanStartService').then((res)=>{
+      HandleGetLoanList:function(currentPage,pageSize){
+        Vue.http.get('/hxy/loanStartService?currentPage=' + currentPage + '&pageSize='+pageSize).then((res)=>{
+          this.total = res.totalCount;
           res.list.forEach(function(item){
             item.f_createTime = dateTimeFormat(item.createTime);
             item.f_accountDate = dateTimeFormat(item.accountDate);
@@ -229,6 +275,32 @@
       //导出放款订单数据
       HandleExportDate:function(){
         window.open('http://localhost:8080/hxy/execl/LoanStartexport.do')
+      },
+      //页码切换
+      handleCurrentChange: function (currentPage) {
+        // console.log(curren - tpage);
+        this.currentPage = currentPage;
+        this.HandleGetLoanList(currentPage,this.pageSize);
+        this.currentChangePage(this.list, currentPage);
+        // console.log(currentPage);
+      },
+      //分页处理
+      currentChangePage: function (list, currentPage) {
+          var from = (currentPage - 1) * this.pageSize;
+          var to = currentPage * this.pageSize;
+          console.log(to)
+          this.tempList = [];
+          for (; from < to; from++) {
+              if (list[from]) {
+                  this.tempList.push(list[from]);
+              }
+          }
+      },
+      //改变大小
+      handleChangepageSize:function(pageSize){
+        this.pageSize = pageSize;
+        this.HandleGetLoanList(this.currentPage,pageSize);
+        this.currentChangePage(this.list,this.currentPage);
       }
     }
   }
