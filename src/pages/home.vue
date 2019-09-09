@@ -4,7 +4,7 @@
     <div class="exportBox">
       <el-button size="mini" round style="background:#ffffff">掉签App下载</el-button>
     </div>
-    <el-form ref="form" :model="sizeForm"  size="mini">
+    <el-form ref="form"  size="mini">
       <el-form-item label="日期">
         <el-date-picker
         v-model="timeRange"
@@ -15,7 +15,7 @@
     </el-form>
     <div class="DataB">
       <div class="dataTilleBox">
-        平台数据 
+        平台数据
         <em class="tips">（平台数据5分钟刷新一次）</em>
       </div>
       <ul class="ulBox">
@@ -146,14 +146,14 @@
               <em class="circle circle13"></em>
               <span class="listTitle">在贷金额（元）</span>
             </div>
-            <div class="num" v-text="haha.code">123</div>
+            <div class="num" v-text="data1.code">123</div>
           </div>
         </li>
       </ul>
     </div>
-    
+
   </div>
-  
+
 </template>
 <script type="text/javascript">
 import axios from 'axios'
@@ -175,7 +175,7 @@ export default {
         console.log(res);
         self.data1 = res;
       })
-      .catch(function (error) { 
+      .catch(function (error) {
         console.log(error);
       });
   },
@@ -247,7 +247,7 @@ export default {
    .dataContent{
      /* position: absolute;
      left: 10%;
-     bottom: 8%; */ 
+     bottom: 8%; */
    }
    .line{
      position: absolute;

@@ -3,7 +3,7 @@
     <div class="box-card" style="margin-bottom: 15px;">
       <el-row style="margin-bottom:15px;">
         <el-col :span="24" style="text-align: right;">
-          <el-button size="mini" type="warning">人员添加</el-button>
+          <el-button size="mini" type="warning"  @click="dialogFormVisible = true">人员添加</el-button>
         </el-col>
       </el-row>
       <el-form :inline="true" class="demo-form-inline" ref='form' :model="form">
@@ -84,6 +84,24 @@
           :total="0">
         </el-pagination>
         </div>
+        <!-- 模态框设置 -->
+        <el-dialog title="添加人员" :visible.sync="dialogFormVisible" width=22% center>
+          <el-form :model="form1">
+            <el-form-item label="分单组名称" label-width="140px">
+              <el-input v-model="form.name" autocomplete="off" size='mini'></el-input>
+            </el-form-item>
+            <el-form-item label="人员姓名" label-width="140px">
+              <el-input v-model="form.name" autocomplete="off" size='mini'></el-input>
+            </el-form-item>
+            <el-form-item label="分配比例 (%)" label-width="140px">
+              <el-input-number v-model="num" controls-position="right" :min="0" :max="100" size="mini"></el-input-number>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="warning" @click="dialogFormVisible = false">确 定</el-button>
+          </div>
+        </el-dialog>
   </div>
 </template>
 
@@ -102,6 +120,13 @@
           f:'',
           g:''
         },
+        form1:{
+          name:'',
+          region:'',
+          delivery:false
+        },
+        dialogFormVisible:false,
+        num:0
     }
     }
   }

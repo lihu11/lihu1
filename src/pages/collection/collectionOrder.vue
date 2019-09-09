@@ -121,6 +121,9 @@
       <span>展期费用：</span>
       <span>回收总金额：</span>
     </div>
+	<div>
+		<el-button type="primary" size="mini" @click="dialogFormVisible = true">批量转单</el-button>
+	</div>
     <div class="order-table">
       <el-table
           height="480px"
@@ -233,6 +236,27 @@
       :total="0">
     </el-pagination>
     </div>
+    <!-- 模态框设置 -->
+    <el-dialog title="批量订单转移" :visible.sync="dialogFormVisible" width=22%>
+      <el-form :model="form1">
+        <el-form-item label="订单编号" label-width="140px">
+         <el-select  placeholder="请选择文章标签" disabled size="mini" v-model="form.e">
+            <el-option label="居杰涛" value="1"></el-option>
+            <el-option label="姜元全" value="2"></el-option>
+         </el-select>
+        </el-form-item>
+        <el-form-item label="目标催收员" label-width="140px">
+          <el-select  placeholder="全部" size="mini" v-model="form.e">
+             <el-option label="居杰涛" value="1"></el-option>
+             <el-option label="姜元全" value="2"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="warning" @click="dialogFormVisible = false">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -251,6 +275,12 @@
           f:'',
           g:''
         },
+        form1:{
+          name:'',
+          region:'',
+          delivery:false
+        },
+        dialogFormVisible:false
       }
     }
   }
