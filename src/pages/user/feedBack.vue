@@ -2,7 +2,7 @@
 <div>
   <form class="selectBox">
     <div class="exportBox">
-      <el-button type="warning">添加反馈</el-button>
+      <el-button type="warning" @click="dialogVisible = true">添加反馈</el-button>
     </div>
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item label="用户姓名">
@@ -25,6 +25,31 @@
          <el-button type="warning">查询</el-button>
     </el-form>
   </form>
+    <el-dialog
+  title="手机验证码"
+  :visible.sync="dialogVisible"
+  width="40%"
+  :before-close="handleClose">
+   <el-form :inline="true" label-width="80px" :label-position="labelPosition" :model="formInline" class="demo-form-inline">
+    <div class="pubLine">
+      <el-form-item label="用户姓名" >
+        <el-input  v-model="formInline.approver" placeholder="请输入" ></el-input>
+    </el-form-item>
+      <el-form-item label="手机号" >
+        <el-input  v-model="formInline.approver" placeholder="请输入" ></el-input>
+    </el-form-item>
+    </div>
+    <div class="pubLine flex">
+      <el-form-item label="问题描述" style="margin-bottom:0">
+        <el-input type="textarea" v-model="formInline.wentimiaoshu" style="width:215%"></el-input>
+      </el-form-item>
+    </div>
+  </el-form>
+  <span slot="footer" class="dialog-footer" style="text-align:center;">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="warning" @click="dialogVisible = false">确 定</el-button>
+  </span>
+</el-dialog>
   <div class="container">
     <div class="tableContainer">
       <table class="tableBox">
@@ -95,6 +120,8 @@
    export default {
     data() {
       return {
+        labelPosition:'right',
+        dialogVisible:false,
         dataRange:"",
         formInline: {
           approver:'',
@@ -108,7 +135,8 @@
           channelSources:'',
           orderState:'',
           borrow:'',
-          bill:''
+          bill:'',
+          wentimiaoshu:''
         }
       }
     },

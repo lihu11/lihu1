@@ -19,33 +19,58 @@
 </template>
 <script>
 import {mapActions} from 'vuex'
+import axios from 'axios'
 export default {
   name: 'login',
   data () {
     return {
-      username: 'Administrator',
-      password: '123456',
-      isLoging: false,
+      username:"",
+      password:"",
+      isLoging:false
     }
   },
   methods: {
     ...mapActions(['login']),
     handleLogin () {
       if (!this.username) {
-          return this.$message.warning("请输入手机号")
+        return this.$message.warning('请输入手机号')
       }
       else if (!this.password) {
-          return this.$message.warning("请输入密码")
+        return this.$message.warning('请输入密码')
       }
       this.isLoging = true
-      this.login({
-        username: this.username,
-        password: this.password
-      }).then(res => {
-        this.$message.success('登录成功')
-        this.$router.push({name: 'home'})
-        this.isLoging = false
+      axios.get('hxy/user/user_login.do',{params:{username:this.username,password:this.password}}).then(res => {
+        var self = this
+        console.log(res);
+        if (res.state == 302) {
+          console.log(res.message)
+          this.$message.warning(res.message)
+           console.log(res.message)
+        }
+        else if (res.state == 305) {
+          console.log(res.message)
+          this.$message.warning(res.message)
+           console.log(res.message)
+        }
+        else {
+          console.log(res)
+          this.$message.success('登录成功')
+          this.$router.push({name: 'home'})
+          this.isLoging = false
+        }
+        // console.log(res.message)
+        
+      }).catch(function (err) {
+
       })
+      // this.login({
+      //   username: this.username,
+      //   password: this.password
+      // }).then(res => {
+      //   this.$message.success('登录成功')
+      //   this.$router.push({name: 'home'})
+      //   this.isLoging = false
+      // })
     }
   }
 }

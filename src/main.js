@@ -29,12 +29,12 @@ Vue.use(ElementUI)
 var whiteList = ['demo', 'login']
 router.beforeEach((to, from, next) => {
   NProgress.start()
-  var token = sessionStorage.getItem('token')
-  if (!token && whiteList.indexOf(to.name) === -1) {
-    app && app.$message.warning('未授权，请登陆授权后继续')
-    NProgress.done()
-    return next({name: 'login'})
-  }
+  // var token = sessionStorage.getItem('token')
+  // if (!token && whiteList.indexOf(to.name) === -1) {
+  //   app && app.$message.warning('未授权，请登陆授权后继续')
+  //   NProgress.done()
+  //   return next({name: 'login'})
+  // }
   return next()
 })
 
@@ -51,7 +51,7 @@ window.APP_INFO = process.env.APP_INFO
 Axios.defaults.validateStatus = status => {
   return status < 500
 }
-// 设置请求token
+// 设置请求tokengit
 Axios.interceptors.request.use(config => {
   var token = sessionStorage.getItem('token')
   config.headers['Authorization'] = 'Bearer ' + token

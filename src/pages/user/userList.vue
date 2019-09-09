@@ -1,9 +1,9 @@
 <template>
 <div>
   <form class="selectBox">
-    <div class="exportBox">
+    <a class="exportBox" href="/hxy/execl/Userlistexport.do">
       <div class="exportBtn">导出Excel</div>
-    </div>
+    </a>
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item label="审批人">
         <el-input size="mini" v-model="formInline.approver" placeholder="请输入"></el-input>
@@ -13,8 +13,9 @@
       </el-form-item>
       <el-form-item label="实名认证">
         <el-select size="mini" v-model="formInline.shiming" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="已认证" value="shanghai"></el-option>
+          <el-option label="未认证" value="beijing"></el-option>
+          <el-option label="认证中" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="银行卡认证">
@@ -48,7 +49,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="渠道来源">
-        <el-select size="mini" v-model="formInline.channelSources" placeholder="全部">
+        <el-select size="mini" v-model="formInline.qudao" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
@@ -88,6 +89,28 @@
       </el-form-item>
     </el-form>
   </form>
+  <el-dialog
+  title="手机验证码"
+  :visible.sync="dialogVisible"
+  width="40%"
+  :before-close="handleClose">
+   <el-form :inline="true" :model="formInline" class="demo-form-inline">
+    <div class="pubLine flex">
+      <el-form-item label="手机号" style="margin-right:0">
+        <el-input  v-model="formInline.approver" placeholder="请输入" style="width:445px;"></el-input>
+    </el-form-item>
+    </div>
+    <div class="pubLine flex">
+      <el-form-item label="验证码" style="margin-bottom:0">
+        <el-input  v-model="formInline.approver" placeholder="请输入"></el-input>
+      </el-form-item>
+      <el-button type="warning">获取验证码</el-button>
+    </div>
+  </el-form>
+  <span slot="footer" class="dialog-footer" style="text-align:center;">
+    <el-button type="warning" @click="dialogVisible = false">确 定</el-button>
+  </span>
+</el-dialog>
   <div class="container">
     <div class="tableContainer">
       <table class="tableBox">
@@ -112,142 +135,61 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>测试宋</td>
-            <td>13735643811</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>quasi</td>
-            <td></td>
-            <td>否</td>
-            <td></td>
+          <tr v-for="(item,index) in dataList.list">
+            <td v-text="index">1</td>
+            <td v-text="item.userName">测试宋</td>
+            <td v-text="item.phoneNumber">13735643811</td>
+            <td v-text="item.realNameAuthentication" :class="item.realNameAuthentication == '未认证'?' ':' certified'" >未认证</td>
+            <td v-text="item.bankCardAuthentication" :class="item.bankCardAuthentication == '未认证'?' ':' certified'">未认证</td>
+            <td v-text="item.faceRecognitionAuthentication" :class="item.faceRecognitionAuthentication == '未认证'?' ':' certified'">人脸识别未认证</td>
+            <td v-text="item.mailListAuthentication" >未认证</td>
+            <td v-text="item.operatorsAuthentication" :class="item.operatorsAuthentication == '已认证'?' certified':item.operatorsAuthentication == '认证失效'?' renzhengfailure':''">未认证</td>
+            <td v-text="item.channelSources">quasi</td>
+            <td v-text="item.orderStatus" :class="item.orderStatus == '风控通过'?'':' noPass'"></td>
+            <td v-text="item.isDoubleLending == 1?'是':item.isDoubleLending == 0?'否':''">否</td>
+            <td v-text="item.windControlResults"></td>
             <td>
-                 <span class="userState normal">灰名单</span>
-              <span class="userState blackList">黑名单</span>
-              <span class="userState greyList">灰名单</span>
+              <span :class="['userState',{'normal' : item.userStatus == '普通', 'blackList' : item.userStatus == '黑名单'}]" v-text="item.userStatus">灰名单</span>
             </td>
-            <td>2019-09-04 10:34:39</td>
-            <td>2019-09-04 10:34:39</td>
+            <td v-text="item.f_createTime">2019-09-04 10:34:39</td>
+            <td v-text="item.f_loginTime">2019-09-04 10:34:39</td>
             <td>
               <div class="btnBox">
-                <el-button type="warning">查看</el-button>
+                <el-button type="warning"  @click="dialogVisible = true">查看</el-button>
                 <el-button type="warning">加入黑名单</el-button>
                 <el-button type="warning">删除</el-button>
               </div>
             </td>
           </tr>
-          <tr>
-            <td>1</td>
+          <!-- <tr>
+            <td >1</td>
             <td>测试宋</td>
             <td>13735643811</td>
+            <td >未认证</td>
             <td>未认证</td>
+            <td>人脸识别未认证</td>
+            <td >未认证</td>
             <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>quasi</td>
-            <td></td>
+            <td >quasi</td>
+            <td ></td>
             <td>否</td>
-            <td></td>
-            <td class="userStateBox">
-              <span class="userState normal">普通</span>
+            <td ></td>
+            <td>
+              <span>灰名单</span>
             </td>
-            <td>2019-09-04 10:34:39</td>
+            <td >2019-09-04 10:34:39</td>
             <td>2019-09-04 10:34:39</td>
             <td>
               <div class="btnBox">
-                <el-button type="warning">查看</el-button>
+                <el-button type="warning"  @click="dialogVisible = true">查看</el-button>
                 <el-button type="warning">加入黑名单</el-button>
                 <el-button type="warning">删除</el-button>
               </div>
             </td>
-          </tr>
+          </tr> -->
           <tr>
-            <td>1</td>
-            <td>测试宋</td>
-            <td>13735643811</td>
-            <td class="certified">已认证</td>
-            <td class="renzhengfailure">认证失效</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>quasi</td>
-            <td>
-              <div class="stateBox">
-                <span class="noPass">风控不通过</span>
-              </div>
-            </td>
-            <td>否</td>
-            <td></td>
-            <td>
-               <span class="userState normal">灰名单</span>
-              <span class="userState blackList">黑名单</span>
-              <span class="userState greyList">灰名单</span>
-            </td>
-
-            <td>2019-09-04 10:34:39</td>
-            <td>2019-09-04 10:34:39</td>
-            <td>
-              <div class="btnBox">
-                <el-button type="warning">查看</el-button>
-                <el-button type="warning">加入黑名单</el-button>
-                <el-button type="warning">删除</el-button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>测试宋</td>
-            <td>13735643811</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>quasi</td>
-            <td></td>
-            <td>否</td>
-            <td></td>
-            <td>普通</td>
-            <td>2019-09-04 10:34:39</td>
-            <td>2019-09-04 10:34:39</td>
-            <td>
-              <div class="btnBox">
-                <el-button type="warning">查看</el-button>
-                <el-button type="warning">加入黑名单</el-button>
-                <el-button type="warning">删除</el-button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>测试宋</td>
-            <td>13735643811</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>未认证</td>
-            <td>quasi</td>
-            <td></td>
-            <td>否</td>
-            <td></td>
-            <td>
-              <span class="userState blackList">黑名单</span>
-            </td>
-            <td>2019-09-04 10:34:39</td>
-            <td>2019-09-04 10:34:39</td>
-            <td>
-              <div class="btnBox">
-                <el-button type="warning">查看</el-button>
-                <el-button type="warning">加入黑名单</el-button>
-                <el-button type="warning">删除</el-button>
-              </div>
-            </td>
+            <td class="noData" colspan="14">暂无数据</td>
+            
           </tr>
         </tbody>
       </table>
@@ -257,23 +199,23 @@
       background
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :current-page="currentPage"
+      :page-sizes="[10, 20, 50, 100]"
+      :page-size="10"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :total="dataList.totalCount">
     </el-pagination>
     </div>
-
   </div>
 </div>
-
 </template>
-
 <script>
+  import axios from 'axios'
+  import {dateTimeFormat} from '@/utils/dateFormat.js'
    export default {
     data() {
       return {
+        dialogVisible: false,
         dataRange:"",
         formInline: {
           approver:'',
@@ -284,15 +226,50 @@
           mailList:'',
           operator:'',
           userState:'',
-          channelSources:'',
+          qudao:'',
           orderState:'',
+          dataRange:"",
           borrow:'',
           bill:''
-        }
+        },
+        dataList:'',
+        currentPage:1,
+        pageSize:10,
+        total:0
       }
     },
     methods: {
+      ShowShandow() {
 
+      },
+      // 点击筛选页数
+      handleSizeChange(pageSize) {
+        this.pageSize = pageSize;
+        this.HandleGetList(this.currentPage,pageSize)
+      },
+      // 点击下一页
+      handleCurrentChange(currentPage) {
+        this.currentPage = currentPage;
+        this.HandleGetList(currentPage,this.pageSize)
+      },
+      // 接口请求数据
+      HandleGetList:function (currentPage,pageSize) {
+        var self = this;
+        axios.get('/hxy/getUserListLb?currentPage=' + currentPage + '&pageSize=' + pageSize).then(function (res) {
+          self.dataList = res
+          res.list.forEach(function (item){
+            item.f_createTime = dateTimeFormat(item.createTime)
+          })
+          res.list.forEach(function (item){
+            item.f_loginTime = dateTimeFormat(item.loginTime)
+          })
+        }).catch(function (error) { 
+          console.log(error);
+        });
+      }
+    },
+    mounted:function () {
+      this.HandleGetList(1,10)
     }
   }
 </script>
@@ -319,5 +296,26 @@
   }
   .greyList{
     color: #009fcf;
+  }
+  .exportBox,.exportBtn{
+    color: #606266;
+  }
+  .exportBtn:hover{
+    background-color: #ecf5ff;
+    color: #409eff;
+  }
+
+
+
+  /* 弹窗自定义 */
+  .flex{
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+  }
+  .pubLine{
+    width: 500px;
+    justify-content: space-between;
+    /* padding-right: 15px; */
   }
 </style>

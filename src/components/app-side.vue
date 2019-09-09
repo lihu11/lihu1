@@ -65,4 +65,7 @@ export default {
   .el-menu-item:focus{
     background-color: #eda323;
   }
+  .el-menu-item-group__title{
+    display: none;
+  }
 </style>

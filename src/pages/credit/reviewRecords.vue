@@ -55,7 +55,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <!-- <tr>
             <td>1</td>
             <td>1654165132165416565135135</td>
             <td>测试宋</td>
@@ -68,10 +68,9 @@
             <td>
               <div class="btnBox">
                 <el-button type="warning">详情</el-button>
-                <!-- <el-button type="warning">删除</el-button> -->
               </div>
             </td>
-          </tr>
+          </tr> -->
            <tr >
             <td class="noData" colspan="10">暂无数据</td>
           </tr>
