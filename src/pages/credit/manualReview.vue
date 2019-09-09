@@ -3,31 +3,31 @@
   <form class="selectBox">
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
       <el-form-item label="姓名">
-        <el-input size="mini" v-model="formInline.approver" placeholder="请输入"></el-input>
+        <el-input size="mini" v-model="formInline.name" placeholder="请输入"></el-input>
       </el-form-item>
       <el-form-item label="手机">
         <el-input size="mini" v-model="formInline.mobile" placeholder="请输入"></el-input>
       </el-form-item>
       <el-form-item label="订单状态">
-        <el-select size="mini" v-model="formInline.shiming" placeholder="全部">
+        <el-select size="mini" v-model="formInline.orderState" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="渠道来源">
-        <el-select size="mini" v-model="formInline.shiming" placeholder="全部">
+        <el-select size="mini" v-model="formInline.qudao" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="新老客">
-        <el-select size="mini" v-model="formInline.shiming" placeholder="全部">
+        <el-select size="mini" v-model="formInline.customer" placeholder="全部">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="审核员">
-        <el-input size="mini" v-model="formInline.mobile" placeholder="请输入"></el-input>
+        <el-input size="mini" v-model="formInline.auditor" placeholder="请输入"></el-input>
       </el-form-item>
       <el-form-item label="申请时间">
         <div class="block">
@@ -41,14 +41,21 @@
         </div>
       </el-form-item>
        <el-form-item label="复审单数">
-        <el-input size="mini" v-model="formInline.mobile" placeholder="请输入"></el-input>
+        <el-input size="mini" v-model="formInline.reviewTime" placeholder="请输入"></el-input>
       </el-form-item>
        <el-form-item label="订单号取单">
-        <el-input size="mini" v-model="formInline.mobile" placeholder="请输入"></el-input>
+        <el-input size="mini" v-model="formInline.orderNum" placeholder="请输入"></el-input>
       </el-form-item>
          <el-button type="warning">查询</el-button>
     </el-form>
   </form>
+  <div class="tipsBox flex">
+    <div class="tipsItem">可取单数：<span class="kequNum">0</span>单</div>
+    <div class="tipsItem">已领取：<span class="kequNum">0</span>单</div>
+    <div class="tipsItem tipsBlue">已审核：<span class="kequNum">0</span>单</div>
+    <div class="tipsItem tipsGreen">可领取风控通过：<span class="kequNum">0</span>条</div>
+    <div class="tipsItem tipsOrange">风控不通过：<span class="kequNum">0</span>条</div>
+  </div>
   <div class="container">
     <div class="tableContainer">
       <table class="tableBox">
@@ -74,7 +81,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <!-- <tr>
             <td>1</td>
             <td>1654165132165416565135135</td>
             <td>测试宋</td>
@@ -83,7 +90,6 @@
             <td>风控不通过</td>
             <td>3</td>
             <td>2.7</td>
-            <!-- <td>0.3</td> -->
             <td>2019-09-04 10:34:39</td>
             <td>老客</td>
             <td>用户状态</td>
@@ -94,7 +100,7 @@
             <td>
               <div class="btnBox">
                 <el-button type="warning">详情</el-button>
-                <!-- <el-button type="warning">删除</el-button> -->
+          
               </div>
             </td>
           </tr>
@@ -107,7 +113,6 @@
             <td>风控不通过</td>
             <td>3</td>
             <td>2.7</td>
-            <!-- <td>0.3</td> -->
             <td>2019-09-04 10:34:39</td>
             <td>老客</td>
             <td>用户状态</td>
@@ -118,10 +123,10 @@
             <td>
               <div class="btnBox">
                 <el-button type="warning">详情</el-button>
-                <!-- <el-button type="warning">删除</el-button> -->
+                
               </div>
             </td>
-          </tr>
+          </tr> -->
            <tr >
             <td class="noData" colspan="16">暂无数据</td>
           </tr>
@@ -154,18 +159,15 @@
       return {
         dataRange:"",
         formInline: {
-          approver:'',
+          name:'',
           mobile:'',
-          shiming:'',
-          bankCard:'',
-          face:'',
-          mailList:'',
-          operator:'',
-          userState:'',
-          channelSources:'',
           orderState:'',
-          borrow:'',
-          bill:''
+          qudao:'',
+          customer:'',
+          auditor:'',
+          dataRange:'',
+          reviewTime:'',
+          orderNum:'',
         }
       }
     },
@@ -193,7 +195,18 @@
     height: 100%;
     padding: 25px;
   }
-
+  .tipsItem{
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 20px;
+    color: #666666;
+  }
+  .tipsBox{
+    height: 30px;
+    background-color: #f2f2f2;
+    margin-bottom: 15px;
+    padding-left: 15px;
+  }
   .pageBox{
     margin-top: 20px;
     text-align: right;
@@ -215,5 +228,19 @@
   }
   .greyList{
     color: #009fcf;
+  }
+  .flex{
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+  }
+  .tipsBlue{
+    color: #00a9d9;
+  }
+  .tipsGreen{
+    color: #3bcc4a;
+  }
+  .tipsOrange{
+    color: #ea9100;
   }
 </style>

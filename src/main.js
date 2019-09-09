@@ -83,7 +83,7 @@ window.APP_INFO = process.env.APP_INFO
 Axios.defaults.validateStatus = status => {
   return status < 500
 }
-// 设置请求token
+// 设置请求tokengit
 Axios.interceptors.request.use(config => {
   var token = sessionStorage.getItem('token')
   config.headers['Authorization'] = 'Bearer ' + token

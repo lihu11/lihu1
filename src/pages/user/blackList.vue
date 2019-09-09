@@ -36,7 +36,7 @@
     <div class="tableContainer">
       <table class="tableBox">
         <thead>
-          <tr>
+          <tr >
             <td>序号</td>
             <td>用户姓名</td>
             <td>手机号码</td>
@@ -49,15 +49,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>测试宋</td>
-            <td>13735643811</td>
-            <td>140511199211111234</td>
-            <td>黑名单</td>
+          <tr v-for="(item,index) in dataList.list">
+            <td v-text="index"></td>
+            <td v-text="item.userName"></td>
+            <td v-text="item.phoneNumber"></td>
+            <td v-text="item.idCard"></td>
+            <td v-text="item.userStatus"></td>
             <td></td>
             <td></td>
-            <td>2019-09-04 10:34:39</td>
+            <td v-text="item.f_dark_time"></td>
             <td>
               <div class="btnBox">
                 <el-button type="warning">查看</el-button>
@@ -65,53 +65,8 @@
               </div>
             </td>
           </tr>
-          <tr>
-            <td>1</td>
-            <td>测试宋</td>
-            <td>13735643811</td>
-            <td>140511199211111234</td>
-            <td>黑名单</td>
-            <td></td>
-            <td></td>
-            <td>2019-09-04 10:34:39</td>
-            <td>
-              <div class="btnBox">
-                <el-button type="warning">查看</el-button>
-                <el-button type="warning">删除</el-button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>测试宋</td>
-            <td>13735643811</td>
-            <td>140511199211111234</td>
-            <td>黑名单</td>
-            <td></td>
-            <td></td>
-            <td>2019-09-04 10:34:39</td>
-            <td>
-              <div class="btnBox">
-                <el-button type="warning">查看</el-button>
-                <el-button type="warning">删除</el-button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>测试宋</td>
-            <td>13735643811</td>
-            <td>140511199211111234</td>
-            <td>黑名单</td>
-            <td></td>
-            <td></td>
-            <td>2019-09-04 10:34:39</td>
-            <td>
-              <div class="btnBox">
-                <el-button type="warning">查看</el-button>
-                <el-button type="warning">删除</el-button>
-              </div>
-            </td>
+          <tr v-show="dataList.length <= 0">
+            <td class="noData" colspan="14">暂无数据</td>
           </tr>
         </tbody>
       </table>
@@ -121,11 +76,11 @@
       background
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :current-page="currentPage"
+      :page-sizes="[10, 20, 50, 100]"
+      :page-size="10"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400">
+      :total="dataList.totalCount">
     </el-pagination>
     </div>
 
@@ -135,12 +90,16 @@
 </template>
 
 <script>
-
-
+import axios from 'axios'
+import {dateTimeFormat} from '@/utils/dateFormat.js'
    export default {
     data() {
       return {
         dataRange:"",
+        dataList:'',
+        currentPage:1,
+        pageSize:10,
+        total:0,
         formInline: {
           approver:'',
           mobile:'',
@@ -158,7 +117,28 @@
       }
     },
     methods: {
-
+      handleSizeChange(pageSize) {
+        this.pageSize = pageSize;
+        this.HandleGetList(this.currentPage,pageSize)
+      },
+      handleCurrentChange(currentPage) {
+        this.currentPage = currentPage;
+        this.HandleGetList(currentPage,this.pageSize)
+      },
+      HandleGetList:function (currentPage,pageSize) {
+        var self = this;
+        axios.get('/hxy/getHeiMinDan?currentPage=' + currentPage + '&pageSize=' + pageSize).then(function (res) {
+          self.dataList = res
+          res.list.forEach(function (item){
+            item.f_dark_time = dateTimeFormat(item.dark_time)
+          })
+        }).catch(function (error) { 
+          console.log(error);
+        });
+      }
+    },
+    mounted:function () {
+      this.HandleGetList(1,10)
     }
   }
 </script>
