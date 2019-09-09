@@ -89,6 +89,28 @@
       </el-form-item>
     </el-form>
   </form>
+  <el-dialog
+  title="手机验证码"
+  :visible.sync="dialogVisible"
+  width="40%"
+  :before-close="handleClose">
+   <el-form :inline="true" :model="formInline" class="demo-form-inline">
+    <div class="pubLine flex">
+      <el-form-item label="手机号" style="margin-right:0">
+        <el-input  v-model="formInline.approver" placeholder="请输入" style="width:445px;"></el-input>
+    </el-form-item>
+    </div>
+    <div class="pubLine flex">
+      <el-form-item label="验证码" style="margin-bottom:0">
+        <el-input  v-model="formInline.approver" placeholder="请输入"></el-input>
+      </el-form-item>
+      <el-button type="warning">获取验证码</el-button>
+    </div>
+  </el-form>
+  <span slot="footer" class="dialog-footer" style="text-align:center;">
+    <el-button type="warning" @click="dialogVisible = false">确 定</el-button>
+  </span>
+</el-dialog>
   <div class="container">
     <div class="tableContainer">
       <table class="tableBox">
@@ -133,14 +155,41 @@
             <td v-text="item.f_loginTime">2019-09-04 10:34:39</td>
             <td>
               <div class="btnBox">
-                <el-button type="warning">查看</el-button>
+                <el-button type="warning"  @click="dialogVisible = true">查看</el-button>
                 <el-button type="warning">加入黑名单</el-button>
                 <el-button type="warning">删除</el-button>
               </div>
             </td>
           </tr>
-          <tr v-show="dataList.length <= 0">
+          <!-- <tr>
+            <td >1</td>
+            <td>测试宋</td>
+            <td>13735643811</td>
+            <td >未认证</td>
+            <td>未认证</td>
+            <td>人脸识别未认证</td>
+            <td >未认证</td>
+            <td>未认证</td>
+            <td >quasi</td>
+            <td ></td>
+            <td>否</td>
+            <td ></td>
+            <td>
+              <span>灰名单</span>
+            </td>
+            <td >2019-09-04 10:34:39</td>
+            <td>2019-09-04 10:34:39</td>
+            <td>
+              <div class="btnBox">
+                <el-button type="warning"  @click="dialogVisible = true">查看</el-button>
+                <el-button type="warning">加入黑名单</el-button>
+                <el-button type="warning">删除</el-button>
+              </div>
+            </td>
+          </tr> -->
+          <tr>
             <td class="noData" colspan="14">暂无数据</td>
+            
           </tr>
         </tbody>
       </table>
@@ -166,6 +215,7 @@
    export default {
     data() {
       return {
+        dialogVisible: false,
         dataRange:"",
         formInline: {
           approver:'',
@@ -189,6 +239,9 @@
       }
     },
     methods: {
+      ShowShandow() {
+
+      },
       // 点击筛选页数
       handleSizeChange(pageSize) {
         this.pageSize = pageSize;
@@ -250,5 +303,19 @@
   .exportBtn:hover{
     background-color: #ecf5ff;
     color: #409eff;
+  }
+
+
+
+  /* 弹窗自定义 */
+  .flex{
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+  }
+  .pubLine{
+    width: 500px;
+    justify-content: space-between;
+    /* padding-right: 15px; */
   }
 </style>

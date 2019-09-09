@@ -8,9 +8,18 @@
       <div class="app-header-logo-box" :style="{height: headerHeight + 'px', color: theme.theme.activeTextColor}">
         <span class="header-logo-text">后台管理系统</span>
       </div>
-      <div class="app-header-logo-box1" :style="{height: headerHeight + 'px', color: theme.theme.activeTextColor}">
-        <img src="../assets/logo.png" class="logo-box" alt="logi">
-        <span class="header-logo-text1">后台管理系统</span>
+      
+      <div class="app-header-logo-box1">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568007741567&di=55831571741eec609a87b187247faa49&imgtype=0&src=http%3A%2F%2Fmmbiz.qpic.cn%2Fmmbiz_jpg%2FTndVpgCBYY9GowUXJJAHwsflqACetrsDMBAynj0Bu2tRtzWP2uica3BFaicFCI7CevJCiaMYUDNeSeBicjt3ZdArOA%2F0%3Fwx_fmt%3Djpeg" class="logo-box" alt="logi">
+        <el-dropdown>
+        <span class="el-dropdown-link">
+          13735643810<i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>修改密码</el-dropdown-item>
+          <el-dropdown-item @click.native="ExitBtn">退出登录</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       </div>
       <app-side :collapse="isCollapse" :theme="theme.theme" class="aside-bg"></app-side>
     </el-aside>
@@ -33,6 +42,7 @@
 <script type="text/javascript">
 import AppHeader from '@/components/app-header'
 import AppSide from '@/components/app-side'
+import axios from 'axios'
 export default {
   name: 'app-view',
   data () {
@@ -52,6 +62,15 @@ export default {
     handleSideSwitch (val) {
       this.isCollapse = val
       this.sideWidth = val ? 60 : 210
+    },
+    ExitBtn: function () {
+      console.log(1111111111)
+      axios.get('hxy/user/quit.do').then(res => {
+        console.log(res)
+        this.$router.push({name: 'login'})
+      }).catch(function (err) {
+
+      })
     },
     handleSwitchHideSide () {
       this.hideSide = !this.hideSide
@@ -82,13 +101,6 @@ export default {
   width: 200px;
   transition: all 0.5s ease;
 }
-<<<<<<< HEAD
-=======
-.app-container .app-body {
-  /* background: #fff; */
-  padding: 0;
-}
->>>>>>> 21f1015684dd1de7e89bef6e530fa3d9b9d78b37
 .app-container .app-footer {
   background: #fff;
   border-top: solid 1px rgba(48, 54, 62, 0.14);
@@ -112,7 +124,6 @@ export default {
 }
 /*logo*/
 .app-header-logo-box1 {
-  height: 80px !important;
   background-color: #338ace;
   color: #fff;
   padding: 15px;
@@ -127,7 +138,9 @@ export default {
 }
 .logo-box{
   display: inline-block;
-  width: 40px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   vertical-align: middle;
 }
 .header-logo-text1{
@@ -161,6 +174,9 @@ element.style {
 #appBody{
   width: 100%;
   height: 100%;
+}
+.el-dropdown{
+  margin: 0 15px;
 }
 /* mini-side
 .app-container.mini-side .app-side {
