@@ -20,45 +20,59 @@
       </el-form-item>
       <el-form-item label="银行卡认证">
         <el-select size="mini" v-model="formInline.bankCard" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="已认证" value="shanghai"></el-option>
+          <el-option label="未认证" value="beijing"></el-option>
+          <el-option label="认证中" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="人脸识别认证">
         <el-select size="mini" v-model="formInline.face" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="已认证" value="shanghai"></el-option>
+          <el-option label="未认证" value="beijing"></el-option>
+          <el-option label="认证中" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="通讯录认证">
         <el-select size="mini" v-model="formInline.mailList" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="已认证" value="shanghai"></el-option>
+          <el-option label="未认证" value="beijing"></el-option>
+          <el-option label="认证中" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="运营商认证">
         <el-select size="mini" v-model="formInline.operator" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="普通" value="shanghai"></el-option>
+          <el-option label="黑名单" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="用户状态">
         <el-select size="mini" v-model="formInline.userState" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="普通" value="shanghai"></el-option>
+          <el-option label="黑名单" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="渠道来源">
         <el-select size="mini" v-model="formInline.qudao" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label=牛牛借 value="shanghai"></el-option>
+          <el-option label="轻松花" value="beijing"></el-option>
+          <el-option label="轻松借" value="beijing"></el-option>
+          <el-option label="月花花" value="beijing"></el-option>
+          <el-option label="vuq5" value="beijing"></el-option>
+          <el-option label="vur6" value="beijing"></el-option>
+          <el-option label="awu3" value="beijing"></el-option>
+          <el-option label="ivq4" value="beijing"></el-option>
+          <el-option label="kkfc" value="beijing"></el-option>
+          <el-option label="liga" value="beijing"></el-option>
+          <el-option label="fess" value="beijing"></el-option>
+          <el-option label="bsff" value="beijing"></el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="订单状态">
         <el-select size="mini" v-model="formInline.orderState" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="未还款" value="shanghai"></el-option>
+          <el-option label="已还款" value="beijing"></el-option>
+           <el-option label="逾期中" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="注册时间">
@@ -74,14 +88,14 @@
       </el-form-item>
       <el-form-item label="老客是否复借">
         <el-select size="mini" v-model="formInline.borrow" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="是" value="shanghai"></el-option>
+          <el-option label="否" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="是否提单">
         <el-select size="mini" v-model="formInline.bill" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="是" value="shanghai"></el-option>
+          <el-option label="否" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item>

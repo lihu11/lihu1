@@ -13,8 +13,9 @@
       </el-form-item>
       <el-form-item label="订单状态">
         <el-select size="mini" v-model="formInline.shiming" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="未还款" value="shanghai"></el-option>
+          <el-option label="已还款" value="beijing"></el-option>
+           <el-option label="逾期中" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="渠道来源">

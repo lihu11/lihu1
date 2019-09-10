@@ -13,8 +13,8 @@
       </el-form-item>
       <el-form-item label="用户类型">
         <el-select size="mini" v-model="formInline.shiming" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="普通" value="shanghai"></el-option>
+          <el-option label="黑名单" value="beijing"></el-option>
         </el-select>
       </el-form-item>
      
@@ -49,14 +49,14 @@
     </el-form-item>
     <el-form-item label="用户类型">
         <el-select  v-model="formInline.shiming" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+           <el-option label="普通" value="shanghai"></el-option>
+          <el-option label="黑名单" value="beijing"></el-option>
         </el-select>
       </el-form-item>
        <el-form-item label="用户标签">
         <el-select  v-model="formInline.shiming" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="标签一" value="shanghai"></el-option>
+          <el-option label="标签二" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="问题描述" style="margin-bottom:0">

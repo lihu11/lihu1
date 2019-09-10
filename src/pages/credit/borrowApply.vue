@@ -13,27 +13,35 @@
       </el-form-item>
       <el-form-item label="订单状态">
         <el-select size="mini" v-model="formInline.orderState" placeholder="全部">
-          <el-option label="风控通过" value="shanghai"></el-option>
-          <el-option label="风控不通过" value="beijing"></el-option>
+          <el-option label="未还款" value="shanghai"></el-option>
+          <el-option label="已还款" value="beijing"></el-option>
+           <el-option label="逾期中" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="客户状态">
         <el-select size="mini" v-model="formInline.customer" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label="普通" value="shanghai"></el-option>
+          <el-option label="黑名单" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="渠道来源">
         <el-select size="mini" v-model="formInline.qudao" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
+          <el-option label=牛牛借 value="shanghai"></el-option>
+          <el-option label="轻松花" value="beijing"></el-option>
+          <el-option label="轻松借" value="beijing"></el-option>
+          <el-option label="月花花" value="beijing"></el-option>
+          <el-option label="vuq5" value="beijing"></el-option>
+          <el-option label="vur6" value="beijing"></el-option>
+          <el-option label="awu3" value="beijing"></el-option>
+          <el-option label="ivq4" value="beijing"></el-option>
+          <el-option label="kkfc" value="beijing"></el-option>
+          <el-option label="liga" value="beijing"></el-option>
+          <el-option label="fess" value="beijing"></el-option>
+          <el-option label="bsff" value="beijing"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="审核员">
-        <el-select size="mini" v-model="formInline.auditor" placeholder="全部">
-          <el-option label="区域一" value="shanghai"></el-option>
-          <el-option label="区域二" value="beijing"></el-option>
-        </el-select>
+        <el-input size="mini" v-model="formInline.userName" placeholder="请输入"></el-input>
       </el-form-item>
       <el-form-item label="申请时间">
         <div class="block">
