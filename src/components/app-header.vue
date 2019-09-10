@@ -1,5 +1,5 @@
 <template>
-  <m-navbar :theme="theme.theme.headerTheme">
+  <div :theme="theme.theme.headerTheme">
     <div>
       <i class="side-switch iconfont icon-jilu" @click="handleSwitchSide"></i>
       <el-breadcrumb separator-class="el-icon-arrow-right" class="nav">
@@ -10,7 +10,7 @@
       </el-breadcrumb>
     </div>
 
-  </m-navbar>
+  </div>
 </template>
 <script type="text/javascript">
 import { mapActions, mapState } from 'vuex'

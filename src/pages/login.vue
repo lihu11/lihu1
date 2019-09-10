@@ -115,6 +115,7 @@ export default {
  .el-form-item__content{
    border: 1px solid #dcdfe6;
    border-radius: 4px;
+   background-color: #ffffff;
    height: 50px;
    display: flex;
    display: -webkit-flex;

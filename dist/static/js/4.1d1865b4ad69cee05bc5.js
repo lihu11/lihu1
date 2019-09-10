@@ -1,2 +1,0 @@
-webpackJsonp([4],{AgS3:function(n,t){},cBkQ:function(n,t){},"j+i4":function(n,t,e){"use strict";var r={render:function(){var n=this.$createElement;return(this._self._c||n)("div",[this._v("每日统计平台")])},staticRenderFns:[]};t.a=r},wvpf:function(n,t,e){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=e("cBkQ"),i=e.n(r);for(var u in r)"default"!==u&&function(n){e.d(t,n,function(){return r[n]})}(u);var c=e("j+i4");var a=function(n){e("AgS3")},f=e("C7Lr")(i.a,c.a,!1,a,null,null);t.default=f.exports}});
-//# sourceMappingURL=4.1d1865b4ad69cee05bc5.js.map

@@ -1,28 +1,49 @@
 <template>
-    <form class="bigContainer">
+<div class="houtaiContainer">
+   <form class="HoutaiSecCon">
         <div class="loginTitle">账号登录</div>
-        <div class="pubLine">
-            <img src="resources/images/count.png" alt="" class="userImg">
-            <input type="text" class="inputPub countInput" id="countInput" placeholder="请输入账号">
+        <div class="pubLineHoutai">
+            <img src="../assets/img/count.png" alt="" class="userImg">
+            <input type="text" class="inputPubHoutai countInput" id="countInput" placeholder="请输入账号">
         </div>
-        <div class="pubLine">
-            <img src="resources/images/psw.png" alt="" class="pswImg">
-            <input type="password" class="inputPub pswInput" id="pswInput" placeholder="请输入密码">
+        <div class="pubLineHoutai">
+            <img src="../assets/img/psw.png" alt="" class="pswImg">
+            <input type="password" class="inputPubHoutai pswInput" id="pswInput" placeholder="请输入密码">
         </div>
-        <input type="button" value="登录" class="submitBtn" onclick="SubmitBtn()">
+        <input type="button" value="登录" class="submitBtnHoutai" @click="SubmitBtn">
     </form>
+</div>
+ 
 </template>
 <script>
 import {mapActions} from 'vuex'
 import axios from 'axios'
 export default {
-    name:'login-houtai'
+    name:'login-houtai',
+    data() {
+        return {
+
+        }
+    },
+    methods:{
+        SubmitBtn:function () {
+            console.log(11111)
+        }
+    }
 }
 </script>
-<style>
-
-
-.bigContainer{
+<style type="text/css">
+.houtaiContainer{
+    background-image: url('../assets/img/loginHoutai.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    position: fixed;
+    width:100%;
+    height: 100%;
+    padding-top: 200px;
+}
+.HoutaiSecCon{
     width: 620px;
     height: 373px;
     border-radius: 12px;
@@ -30,16 +51,7 @@ export default {
     margin: 0 auto 0;
     padding: 47px 30px 0 30px;
 }
-.titleImg{
-    display: block;
-    margin: 0 auto 80px;
-}
-#app{
-	padding-top:300px;
-}
-    
-
-.submitBtn{
+.submitBtnHoutai{
     width: 300px;
     height: 54px;
     line-height: 54px;
@@ -51,8 +63,10 @@ export default {
     margin: 50px auto 0;
     display: block;
     cursor: pointer;
+    outline: none;
+    border: none;
 }
-.submitBtn:active{
+.submitBtnHoutai:active{
     opacity: 0.8;
 }
 .loginTitle{
@@ -61,7 +75,7 @@ export default {
     text-align: center;
     margin-bottom: 20px;
 }
-.pubLine{
+.pubLineHoutai{
     width: 300px;
     height: 54px;
     border-bottom: 1px solid #2b3a41;
@@ -72,15 +86,15 @@ export default {
     padding-left: 14px;
     padding-bottom: 5px;
 }
-.inputPub{
+.inputPubHoutai{
     background-color: transparent;
     margin-left: 25px;
     vertical-align: middle;
     width: calc(100% - 55px);
+    outline: none;
+    border: none;
 }
-.pubLine img{
+.pubLineHoutai img{
     vertical-align: middle;
 }
-
-
 </style>
