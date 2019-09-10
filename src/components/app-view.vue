@@ -174,9 +174,7 @@ element.style {
   width: 100%;
   height: 100%;
 }
-.el-dropdown{
-  margin: 0 15px;
-}
+
 /* mini-side
 .app-container.mini-side .app-side {
   overflow: visible;
