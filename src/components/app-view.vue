@@ -150,7 +150,7 @@ export default {
   color: #fff !important;
 }
 .el-menu{
-  background-color: transparent;
+  background-color: transparent!important;
 }
 .el-menu-item-group>ul{
   background-color: #163376;
