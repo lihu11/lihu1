@@ -1,27 +1,16 @@
 <template>
-<<<<<<< HEAD
   <m-navbar :theme="theme.theme.headerTheme">
-    <m-navbar-brand class="flex">
-      <i class="side-switch iconfont icon-jilu" @click="handleSwitchSide"></i>
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb  v-for="list in currentPath">
-        
-      </el-breadcrumb>
-      <!-- <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item>活动详情</el-breadcrumb-item> -->
-    </el-breadcrumb>
-    </m-navbar-brand>
-    
-  </m-navbar>
-=======
-  <div :theme="theme.theme.headerTheme">
     <div>
       <i class="side-switch iconfont icon-jilu" @click="handleSwitchSide"></i>
+      <el-breadcrumb separator-class="el-icon-arrow-right" class="nav">
+        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item v-for="item in routerList" :key='item.name' :to='item.path'>
+          {{item.name}}
+        </el-breadcrumb-item>
+      </el-breadcrumb>
     </div>
-  </div>
->>>>>>> ecda92b4d6e1471713fe53cf94d61a907ca45f12
+
+  </m-navbar>
 </template>
 <script type="text/javascript">
 import { mapActions, mapState } from 'vuex'
@@ -30,50 +19,47 @@ import { requestFullScreen, exitFullscreen } from '@/utils'
 import themes from './theme'
 export default {
   name: 'app-header',
-  props:['currentPath'],
-  data () {
+  props: ['currentPath'],
+  data() {
     return {
       mini: false,
       isFullScreen: false,
       themes,
       themeType: '',
       showAside: true,
-      theme: { theme: { headerTheme: 'info' } }
+      theme: { theme: { headerTheme: 'info' } },
+	    routerList:[]
     }
+  },
+  //监听路由
+  watch:{
+	$route(){
+		this.getBreadcrumb()
+	}
   },
   computed: {
     ...mapState({
       user: ({ user }) => user.user
     })
   },
-  watch: {
-    // themeType (val) {
-    //   this.theme = this.themes.find(e => e.name === val) || {}
-    //   this.$emit('set-theme', this.theme)
-    //   localStorage.setItem('theme', val)
-    // }
-  },
   methods: {
     ...mapActions(['getLoginUser', 'logout']),
-    handleSwitchSide () {
+    handleSwitchSide() {
       this.mini = !this.mini
       this.$emit('switch', this.mini)
     },
-    // handleSwitchScreen () {
-    //   if (this.isFullScreen) {
-    //     exitFullscreen()
-    //     this.isFullScreen = false
-    //   } else {
-    //     requestFullScreen()
-    //     this.isFullScreen = true
-    //   }
-    // },
-    // handleSwitchHideSide () {
-    //   console.log('change')
-    //   this.$emit('hide-side')
-    // }
+	//获取路由
+	getBreadcrumb:function(){
+		let matched = this.$route.matched.filter(item => item.name)
+		const first = matched[1];
+		if(first){
+			matched = [{path:'/',meta: { title: 'home'}}].concat(matched)
+		}
+		this.routerList = matched
+    console.log(this.routerList)
+	}
   },
-  created () {
+  created() {
     this.getLoginUser()
     var theme = localStorage.getItem('theme') || 'default'
     this.themeType = theme
@@ -88,17 +74,22 @@ export default {
   color: white;
   height: 50px;
   line-height: 50px;
+  margin-left: 10px;
 }
 .side-switch:hover {
   color: #fff;
 }
-.flex{
-  display: flex!important;
-  display: -webkit-flex!important;
+.flex {
+  display: flex !important;
+  display: -webkit-flex !important;
   align-items: center;
 }
-.el-breadcrumb .el-breadcrumb__inner{
+.el-breadcrumb .el-breadcrumb__inner {
   font-size: 12px;
-  color: #ffffff!important;
+  color: #ffffff !important;
+}
+.nav{
+  display: inline-block;
+
 }
 </style>

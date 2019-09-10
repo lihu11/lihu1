@@ -161,32 +161,6 @@
               </div>
             </td>
           </tr>
-          <!-- <tr>
-            <td >1</td>
-            <td>测试宋</td>
-            <td>13735643811</td>
-            <td >未认证</td>
-            <td>未认证</td>
-            <td>人脸识别未认证</td>
-            <td >未认证</td>
-            <td>未认证</td>
-            <td >quasi</td>
-            <td ></td>
-            <td>否</td>
-            <td ></td>
-            <td>
-              <span>灰名单</span>
-            </td>
-            <td >2019-09-04 10:34:39</td>
-            <td>2019-09-04 10:34:39</td>
-            <td>
-              <div class="btnBox">
-                <el-button type="warning"  @click="dialogVisible = true">查看</el-button>
-                <el-button type="warning">加入黑名单</el-button>
-                <el-button type="warning">删除</el-button>
-              </div>
-            </td>
-          </tr> -->
           <tr>
             <td class="noData" colspan="14">暂无数据</td>
             
