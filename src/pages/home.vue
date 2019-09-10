@@ -155,7 +155,7 @@
 <script type="text/javascript">
 import axios from 'axios'
 export default {
-  name: 'home',
+  // name: 'home',
   data() {
     return {
       timeRange: '',

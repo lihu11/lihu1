@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <m-navbar :theme="theme.theme.headerTheme">
     <m-navbar-brand class="flex">
       <i class="side-switch iconfont icon-jilu" @click="handleSwitchSide"></i>
@@ -15,13 +14,6 @@
     </m-navbar-brand>
     
   </m-navbar>
-=======
-  <div :theme="theme.theme.headerTheme">
-    <div>
-      <i class="side-switch iconfont icon-jilu" @click="handleSwitchSide"></i>
-    </div>
-  </div>
->>>>>>> ecda92b4d6e1471713fe53cf94d61a907ca45f12
 </template>
 <script type="text/javascript">
 import { mapActions, mapState } from 'vuex'
