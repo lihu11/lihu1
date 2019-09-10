@@ -33,6 +33,9 @@
 .el-button{
   padding: 0 20px;
 }
+.el-menu{
+  background-color: transparent!important;
+}
 /* 图标居中 */
 editor--mini .el-range__icon {
     line-height: 26px;
