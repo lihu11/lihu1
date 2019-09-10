@@ -1,7 +1,7 @@
 <template>
 <div>
   <form class="selectBox">
-    <a class="exportBox" href="/hxy/execl/Userlistexport.do">
+    <a class="exportBox" href="./execl/Userlistexport.do">
       <div class="exportBtn">导出Excel</div>
     </a>
     <el-form :inline="true" :model="formInline" class="demo-form-inline">
@@ -141,7 +141,7 @@
             <td>渠道来源</td>
             <td>订单状态</td>
             <td>老客是否复借</td>
-            <td>风控结果</td>
+            <!-- <td>风控结果</td> -->
             <td>用户状态</td>
             <td>注册时间</td>
             <td>登陆时间</td>
@@ -150,7 +150,7 @@
         </thead>
         <tbody>
           <tr v-for="(item,index) in dataList.list">
-            <td v-text="index">1</td>
+            <td v-text="index+1">1</td>
             <td v-text="item.userName">测试宋</td>
             <td v-text="item.phoneNumber">13735643811</td>
             <td v-text="item.realNameAuthentication" :class="item.realNameAuthentication == '未认证'?' ':' certified'" >未认证</td>
@@ -161,7 +161,7 @@
             <td v-text="item.channelSources">quasi</td>
             <td v-text="item.orderStatus" :class="item.orderStatus == '风控通过'?'':' noPass'"></td>
             <td v-text="item.isDoubleLending == 1?'是':item.isDoubleLending == 0?'否':''">否</td>
-            <td v-text="item.windControlResults"></td>
+            <!-- <td v-text="item.windControlResults"></td> -->
             <td>
               <span :class="['userState',{'normal' : item.userStatus == '普通', 'blackList' : item.userStatus == '黑名单'}]" v-text="item.userStatus">灰名单</span>
             </td>
@@ -175,9 +175,9 @@
               </div>
             </td>
           </tr>
-          <tr>
-            <td class="noData" colspan="14">暂无数据</td>
-            
+          <tr v-show="dataList.length <= 0">
+            <td class="noData" colspan="15">暂无数据</td>
+
           </tr>
         </tbody>
       </table>
@@ -243,7 +243,7 @@
       // 接口请求数据
       HandleGetList:function (currentPage,pageSize) {
         var self = this;
-        axios.get('/hxy/getUserListLb?currentPage=' + currentPage + '&pageSize=' + pageSize).then(function (res) {
+        axios.get('./getUserListLb?currentPage=' + currentPage + '&pageSize=' + pageSize).then(function (res) {
           self.dataList = res
           res.list.forEach(function (item){
             item.f_createTime = dateTimeFormat(item.createTime)
@@ -251,7 +251,7 @@
           res.list.forEach(function (item){
             item.f_loginTime = dateTimeFormat(item.loginTime)
           })
-        }).catch(function (error) { 
+        }).catch(function (error) {
           console.log(error);
         });
       }

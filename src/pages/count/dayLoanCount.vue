@@ -173,17 +173,17 @@
     methods:{
 		//导出数据
 		handleExport:function(){
-		  window.open('/hxy/execl/EveryDailyLend.do');
+		  window.open('./execl/EveryDailyLend.do');
 		},
       //获取数据请求
       HandleGetLoanCount:function(currentPage,pageSize){
         this.HandleGetMaxNum()
-        Vue.http.get('/hxy/channel/getDailyLend.do?page=' + currentPage + '&num='+ pageSize).then((res)=>{
+        Vue.http.get('./channel/getDailyLend.do?page=' + currentPage + '&num='+ pageSize).then((res)=>{
           this.LoanList = res.data;
         })
       },
       HandleGetMaxNum:function(){
-        Vue.http.get('/hxy/channel/getDailyLendnum.do').then((res)=>{
+        Vue.http.get('./channel/getDailyLendnum.do').then((res)=>{
           //console.log(res)
           this.total = res.data
         })

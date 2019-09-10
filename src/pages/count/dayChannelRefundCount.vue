@@ -100,10 +100,12 @@
               </el-table-column>
               <el-table-column
                 label="减免金额">
+                0
               </el-table-column>
               <el-table-column
                 label="减免订单数"
                >
+               0
               </el-table-column>
               <el-table-column
                 prop="yhmoney"
@@ -115,10 +117,12 @@
               </el-table-column>
               <el-table-column
                 label="部分还款金额">
+                0
               </el-table-column>
               <el-table-column
                 label="还款订单减免金额"
                >
+               0
               </el-table-column>
               <el-table-column
                 prop="latesunmoney"
@@ -126,6 +130,7 @@
               </el-table-column>
               <el-table-column
                 label="正常还款减免金额">
+                0
               </el-table-column>
               <el-table-column
                 prop="repaidmoney"
@@ -145,24 +150,28 @@
                 label="逾期费用">
               </el-table-column>
               <el-table-column
-                prop="firstoverdue"
+                prop="n_firstoverdue"
                 label="订单首逾率">
               </el-table-column>
               <el-table-column
                 label="1日回款率(订单)"
                >
+               0%
               </el-table-column>
               <el-table-column
                 label="3日回款率(订单)">
+                0%
               </el-table-column>
               <el-table-column
                 label="7日回款率(订单)">
+                0%
               </el-table-column>
               <el-table-column
                 label="15日回款率(订单)">
+                0%
               </el-table-column>
               <el-table-column
-                prop="leanoverdue"
+                prop="n_leanoverdue"
                 label="当前订单逾期率"
                >
               </el-table-column>
@@ -211,12 +220,12 @@
      methods:{
        //导出数据
        handleExport:function(){
-         window.open('/hxy/execl/EveryChannel1.do');
+         window.open('./execl/EveryChannel1.do');
        },
        //获取数据
        handleGetList:function(currentPage,pageSize){
          this.handleGetMax()
-         Vue.http.get('/hxy/channel/getChannelDailyReturn.do?page=' + currentPage + '&num=' + pageSize).then(
+         Vue.http.get('./channel/getChannelDailyReturn.do?page=' + currentPage + '&num=' + pageSize).then(
           (res)=>{
             this.c_list = res.data
           }
@@ -224,8 +233,12 @@
        },
        //获取最大条数
        handleGetMax:function(){
-          Vue.http.get('/hxy/channel/getChannelReturnNum.do').then(
+          Vue.http.get('./channel/getChannelReturnNum.do').then(
             (res) => {
+              res.data.forEach((item)=>{
+                item.n_firstoverdue = (item.firstoverdue * 100).toFixed(2) + '%';
+                item.n_leanoverdue = (item.leanoverdue * 100).toFixed(2) + '%';
+              })
               this.total = res.data
             }
           )

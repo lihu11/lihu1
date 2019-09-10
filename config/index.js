@@ -11,13 +11,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/hxy': {
-        target: 'http://127.0.0.1:8000/hxy/',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/hxy': ''
-        }
-      }
+
     },
 
     // Various Dev Server settings

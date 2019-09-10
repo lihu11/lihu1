@@ -16,7 +16,7 @@ const page6 = name => () => import('@/pages/count/' + name)
 
 
 export default new Router({
-  mode: 'history',
+  //mode: 'history',
   routes: [
     {
       path: '',

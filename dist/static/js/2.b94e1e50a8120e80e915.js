@@ -1,0 +1,2 @@
+webpackJsonp([2],{"9dfA":function(n,t){},C6a0:function(n,t,e){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=e("jmav"),a=e.n(r);for(var u in r)"default"!==u&&function(n){e.d(t,n,function(){return r[n]})}(u);var c=e("caJE");var i=function(n){e("9dfA")},f=e("C7Lr")(a.a,c.a,!1,i,null,null);t.default=f.exports},caJE:function(n,t,e){"use strict";var r={render:function(){var n=this.$createElement;return(this._self._c||n)("div",[this._v("这是每日催收回收统计")])},staticRenderFns:[]};t.a=r},jmav:function(n,t){}});
+//# sourceMappingURL=2.b94e1e50a8120e80e915.js.map

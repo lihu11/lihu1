@@ -9,7 +9,7 @@ import NProgress from 'nprogress'
 
 import App from './App'
 import store from './store'
-import router from './router'
+
 import 'element-ui/lib/theme-chalk/index.css'
 // import '@/assets/font-awesome-4.7.0/css/font-awesome.min.css'
 import '@/assets/css/main.css'
@@ -20,9 +20,9 @@ import 'animate.css'
 import '@/assets/css/baseform.css'
 import '@/assets/css/basetable.css'
 import '@/assets/font/iconfont.css'
+import router from './router'
 
 Vue.use(ElementUI)
-
 
 
 

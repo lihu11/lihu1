@@ -8,7 +8,7 @@
       <div class="app-header-logo-box" :style="{height: headerHeight + 'px', color: theme.theme.activeTextColor}">
         <span class="header-logo-text">后台管理系统</span>
       </div>
-      
+
       <div class="app-header-logo-box1">
         <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568007741567&di=55831571741eec609a87b187247faa49&imgtype=0&src=http%3A%2F%2Fmmbiz.qpic.cn%2Fmmbiz_jpg%2FTndVpgCBYY9GowUXJJAHwsflqACetrsDMBAynj0Bu2tRtzWP2uica3BFaicFCI7CevJCiaMYUDNeSeBicjt3ZdArOA%2F0%3Fwx_fmt%3Djpeg" class="logo-box" alt="logi">
         <el-dropdown>
@@ -161,11 +161,14 @@ export default {
 .el-submenu:hover .el-submenu__title{
   background-color: #286ea5!important;
 }
+  .el-menu-item:focus{
+    background-color: #eda323!important;
+  }
 element.style {
   color: #fff!important;
 }
 .el-menu-item:hover{
-  background-color: #5c8dff;
+  background-color: #5c8dff!important;
 }
 .app-side *{
   color: #ffffff!important;
@@ -174,7 +177,9 @@ element.style {
   width: 100%;
   height: 100%;
 }
-
+.el-menu.side-menu .el-menu-item.is-active{
+  background:#eda323!important;
+}
 /* mini-side
 .app-container.mini-side .app-side {
   overflow: visible;

@@ -17,7 +17,7 @@
           <el-option label="黑名单" value="beijing"></el-option>
         </el-select>
       </el-form-item>
-     
+
       <el-form-item label="拉黑时间">
         <div class="block">
         <el-date-picker size="mini"
@@ -164,12 +164,12 @@ import {dateTimeFormat} from '@/utils/dateFormat.js'
       },
       HandleGetList:function (currentPage,pageSize) {
         var self = this;
-        axios.get('/hxy/getHeiMinDan?currentPage=' + currentPage + '&pageSize=' + pageSize).then(function (res) {
+        axios.get('./getHeiMinDan?currentPage=' + currentPage + '&pageSize=' + pageSize).then(function (res) {
           self.dataList = res
           res.list.forEach(function (item){
             item.f_dark_time = dateTimeFormat(item.dark_time)
           })
-        }).catch(function (error) { 
+        }).catch(function (error) {
           console.log(error);
         });
       }

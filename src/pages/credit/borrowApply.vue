@@ -159,12 +159,12 @@
       },
       HandleGetList: function (currentPage,pageSize) {
         var self = this;
-        axios.get('/hxy/getLoanApplyLb?currentPage=' + currentPage + '&pageSize=' + pageSize).then(function (res) {
+        axios.get('./getLoanApplyLb?currentPage=' + currentPage + '&pageSize=' + pageSize).then(function (res) {
           self.dataList = res;
           res.list.forEach(function (item) {
             item.f_createTime = dateTimeFormat(item.createTime)
           })
-        }).catch(function (error) { 
+        }).catch(function (error) {
           console.log(error);
         });
       }

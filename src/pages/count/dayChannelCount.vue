@@ -64,7 +64,7 @@
                 label="商务名称">
               </el-table-column>
               <el-table-column
-                prop="blackHitRate"
+                prop="n_blackHitRate"
                 width="118"
                 label="黑名单命中率">
               </el-table-column>
@@ -121,15 +121,15 @@
                 label="首逾人数">
               </el-table-column>
               <el-table-column
-                prop="latePercentage"
+                prop="n_latePercentage"
                 label="金额首逾率">
               </el-table-column>
               <el-table-column
-                prop="orderPercentage"
+                prop="n_orderPercentage"
                 label="订单首逾率">
               </el-table-column>
               <el-table-column
-                prop="subscriptionRate"
+                prop="n_subscriptionRate"
                 width="60"
                 label="下单率">
               </el-table-column>
@@ -178,20 +178,26 @@
     methods:{
       //导出数据
       handleExport:function(){
-        window.open('/hxy/execl/EveryChannel.do');
+        window.open('./execl/EveryChannel.do');
       },
       //获取数据
       handleGetList:function(currentPage,pageSize){
         this.handleGetMax()
-        Vue.http.get('/hxy/channel/getChannel.do?page='+ currentPage +'&num='+pageSize).then(
+        Vue.http.get('./channel/getChannel.do?page='+ currentPage +'&num='+pageSize).then(
           (res)=>{
+            res.data.forEach((item) => {
+              item.n_blackHitRate = (item.blackHitRate * 100).toFixed(2) + '%';
+              item.n_latePercentage = (item.latePercentage * 100).toFixed(2) +'%';
+              item.n_orderPercentage = (item.orderPercentage * 100).toFixed(2) + '%';
+              item.n_subscriptionRate = (item.subscriptionRate * 100).toFixed(2) +'%';
+            })
             this.c_list = res.data
           }
         )
       },
       //获取最大条数
       handleGetMax:function(){
-        Vue.http.get('/hxy/channel/getChannelNum.do').then(
+        Vue.http.get('./channel/getChannelNum.do').then(
           (res) => {
             this.total = res.data
           }

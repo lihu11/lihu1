@@ -123,7 +123,7 @@
           style="width: 100%"
           >
           <el-table-column
-            prop="id"
+            type="index"
             label="序号"
            >
           </el-table-column>
@@ -285,7 +285,7 @@
       //获取数据请求
       HandleGetOrderList:function(currentPage,pageSize) {
         console.log(currentPage)
-        Vue.http.get('/hxy/loanAllService?currentPage=' + currentPage + '&pageSize='+pageSize).then((res)=>{
+        Vue.http.get('./loanAllService?currentPage=' + currentPage + '&pageSize='+pageSize).then((res)=>{
           this.total = res.totalCount;
           res.list.forEach(function(item){
             item.f_createTime = dateTimeFormat(item.createTime);
@@ -299,7 +299,7 @@
       },
       //导出数据
       HandleExportDate:function(){
-        window.open('http://localhost:8080/hxy/execl/LoanAllexport.do')
+        window.open('./execl/LoanAllexport.do')
       },
       //页码切换
       handleCurrentChange: function (currentPage) {

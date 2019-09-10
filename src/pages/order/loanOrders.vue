@@ -123,7 +123,7 @@
                 width="55">
               </el-table-column>
           <el-table-column
-            prop="id"
+            type="index"
             label="序号"
            >
           </el-table-column>
@@ -262,7 +262,7 @@
     methods:{
       //获取放款订单数据
       HandleGetLoanList:function(currentPage,pageSize){
-        Vue.http.get('/hxy/loanStartService?currentPage=' + currentPage + '&pageSize='+pageSize).then((res)=>{
+        Vue.http.get('./loanStartService?currentPage=' + currentPage + '&pageSize='+pageSize).then((res)=>{
           this.total = res.totalCount;
           res.list.forEach(function(item){
             item.f_createTime = dateTimeFormat(item.createTime);
@@ -274,7 +274,7 @@
       },
       //导出放款订单数据
       HandleExportDate:function(){
-        window.open('http://localhost:8080/hxy/execl/LoanStartexport.do')
+        window.open('./execl/LoanStartexport.do')
       },
       //页码切换
       handleCurrentChange: function (currentPage) {

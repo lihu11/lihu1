@@ -133,7 +133,7 @@
           style="width: 100%"
           class="tableBox">
           <el-table-column
-            prop="id"
+           type="index"
             label="序号"
            >
           </el-table-column>

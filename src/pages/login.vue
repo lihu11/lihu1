@@ -1,5 +1,6 @@
 <template>
   <div class="fullscreen">
+    <img src="../assets/img/houtai1.png" alt="" class="loginBg">
     <div class="conImgBox">
       <img src="../assets/img/houtai2.png" alt="" class="conImg">
       <div class="loginForm">
@@ -39,7 +40,7 @@ export default {
         return this.$message.warning('请输入密码')
       }
       this.isLoging = true
-      axios.get('hxy/user/user_login.do',{params:{username:this.username,password:this.password}}).then(res => {
+      axios.get('./user/user_login.do',{params:{username:this.username,password:this.password}}).then(res => {
         var self = this
         console.log(res);
         if (res.state == 302) {
@@ -55,11 +56,11 @@ export default {
         else {
           console.log(res)
           this.$message.success('登录成功')
-          this.$router.push({name: 'home'})
+          this.$router.push({name: '首页'})
           this.isLoging = false
         }
         // console.log(res.message)
-        
+
       }).catch(function (err) {
 
       })
@@ -77,9 +78,6 @@ export default {
 </script>
 <style type="text/css" scoped>
  .fullscreen{
-   background-image: url('../assets/img/houtai1.png');
-   background-repeat: no-repeat;
-   background-size: 100% 100%;
    width: 100%;
    height: 100%;
    position: fixed;
@@ -87,9 +85,17 @@ export default {
    align-items: center;
    justify-content: center;
  }
+ .loginBg{
+   position: fixed;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+ }
  .conImgBox{
    width: 95%;
    position: relative;
+   margin: 0 auto;
  }
  .conImgBox img{
    width: 100%;

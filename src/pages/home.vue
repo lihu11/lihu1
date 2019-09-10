@@ -178,157 +178,156 @@ export default {
     getOne: function() {
       var self = this
       axios
-        .get('/hxy/shouye/getone')
+        .get('./shouye/getone')
         .then(function(res) {
-          console.log(res)
-          self.dataOne = res
+            self.dataOne = res
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getTwo: function() {
       var self = this
       axios
-        .get('/hxy/shouye/gettwo')
+        .get('./shouye/gettwo')
         .then(function(res) {
           console.log(res)
-          self.dataTwo = res
+
+            self.dataTwo = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getThree: function() {
       var self = this
       axios
-        .get('/hxy/shouye/gettherr')
+        .get('./shouye/gettherr')
         .then(function(res) {
-          console.log(res)
-          self.dataThree = res
+
+            self.dataThree = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getFour: function() {
       var self = this
       axios
-        .get('/hxy/shouye/getfour')
+        .get('./shouye/getfour')
         .then(function(res) {
-          console.log(res)
-          self.dataFour = res
+
+            self.dataFour = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getFive: function() {
       var self = this
       axios
-        .get('/hxy/shouye/getfive')
+        .get('./shouye/getfive')
         .then(function(res) {
-          console.log(res)
-          self.dataFive = res
+
+            self.dataFive = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getSix: function() {
       var self = this
       axios
-        .get('/hxy/shouye/getsix')
+        .get('./shouye/getsix')
         .then(function(res) {
-          console.log(res)
-          self.dataSix = res
+
+           self.dataSix = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getSeven: function() {
       var self = this
       axios
-        .get('/hxy/shouye/getseven')
+        .get('./shouye/getseven')
         .then(function(res) {
-          console.log(res)
-          self.dataSeven = res
+
+            self.dataSeven = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getEight: function() {
       var self = this
       axios
-        .get('/hxy/shouye/geteight')
+        .get('./shouye/geteight')
         .then(function(res) {
-          console.log(res)
-          self.dataEight = res
+
+             self.dataEight = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getNine: function() {
       var self = this
       axios
-        .get('/hxy/shouye/getnine')
+        .get('./shouye/getnine')
         .then(function(res) {
-          console.log(res)
-          self.dataNine = res
+
+            self.dataNine = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getTen: function() {
       var self = this
       axios
-        .get('/hxy/shouye/getten')
+        .get('./shouye/getten')
         .then(function(res) {
-          console.log(res)
-          self.dataTen = res
+
+           self.dataTen = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getEleven: function() {
       var self = this
       axios
-        .get('/hxy/shouye/geteleven')
+        .get('./shouye/geteleven')
         .then(function(res) {
-          console.log(res)
-          self.dataEleven = res
+
+            self.dataEleven = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getTwelve: function() {
       var self = this
       axios
-        .get('/hxy/shouye/gettwelve')
+        .get('./shouye/gettwelve')
         .then(function(res) {
-          console.log(res)
-          self.dataTwelve = res
+
+             self.dataTwelve = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     },
     getThirteen: function() {
       var self = this
       axios
-        .get('/hxy/shouye/getthirteen')
+        .get('./shouye/getthirteen')
         .then(function(res) {
-          console.log(res)
-          self.dataThirteen = res
+
+            self.dataThirteen = res
+
         })
         .catch(function(error) {
-          console.log(error)
         })
     }
   },
@@ -347,8 +346,14 @@ export default {
     self.getEleven()
     self.getTwelve()
     self.getThirteen()
+
+    setInterval(function () {
+      window.reload()
+    },3000000)
   },
-  created: function() {}
+  created: function() {
+
+  }
 }
 </script>
 <style scoped>
